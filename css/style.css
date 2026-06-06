@@ -544,8 +544,32 @@ main {
 
 .badge-game { background: rgba(99, 179, 237, 0.12); color: #7ec8f0; }
 .badge-prototype { background: var(--accent-soft); color: var(--accent); }
+.badge-horror { background: rgba(160, 80, 200, 0.15); color: #c49ee8; }
 .badge-asset { background: rgba(124, 108, 240, 0.15); color: #a99cf5; }
 .badge-tool { background: rgba(72, 199, 142, 0.12); color: #6dd4a8; }
+
+.card-codename {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: -0.35rem 0 0.75rem;
+}
+
+.card-icon-wrap-echo {
+  background: linear-gradient(160deg, rgba(20, 10, 40, 0.9), rgba(8, 20, 50, 0.85));
+}
+
+.card-icon-echo {
+  font-size: 2.25rem;
+  color: rgba(180, 140, 220, 0.85);
+  text-shadow: 0 0 24px rgba(140, 80, 200, 0.5);
+  background: transparent;
+  border: none;
+  width: auto;
+  height: auto;
+}
 
 .project-card h3 {
   font-size: 1.2rem;
@@ -597,7 +621,6 @@ main {
 
 .project-grid-games {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  max-width: 760px;
 }
 
 .project-grid-assets {
