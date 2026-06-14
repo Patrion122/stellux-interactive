@@ -532,6 +532,16 @@ main {
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(240, 180, 41, 0.15);
 }
 
+.project-card.featured-release {
+  border-color: rgba(72, 199, 142, 0.35);
+  box-shadow: 0 0 0 1px rgba(72, 199, 142, 0.1), 0 16px 48px rgba(0, 0, 0, 0.25);
+}
+
+.project-card.featured-release.revealed:hover {
+  border-color: rgba(72, 199, 142, 0.55);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(72, 199, 142, 0.2);
+}
+
 .project-card.coming-soon {
   cursor: default;
 }
@@ -605,6 +615,16 @@ main {
   font-weight: 600;
 }
 
+.badge-new {
+  background: rgba(72, 199, 142, 0.92);
+  color: #0a0a12;
+  font-weight: 600;
+}
+
+.badge-new-secondary {
+  top: 2.4rem;
+}
+
 .card-body {
   padding: 1.5rem 1.75rem 1.75rem;
   flex: 1;
@@ -641,6 +661,10 @@ main {
 .badge-flagship-inline {
   background: rgba(240, 180, 41, 0.12);
   color: var(--accent);
+}
+.badge-bestseller {
+  background: rgba(250, 92, 124, 0.18);
+  color: #f08aa0;
 }
 .badge-asset { background: rgba(124, 108, 240, 0.15); color: #a99cf5; }
 .badge-tool { background: rgba(72, 199, 142, 0.12); color: #6dd4a8; }
@@ -720,6 +744,10 @@ main {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
+.project-grid-tools {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
 @media (min-width: 860px) {
   .project-grid-games .project-card.featured-flagship {
     grid-column: 1 / -1;
@@ -746,10 +774,6 @@ main {
 }
 
 .assets-section {
-  padding-top: 0;
-}
-
-.tools-section {
   padding-top: 0;
 }
 
