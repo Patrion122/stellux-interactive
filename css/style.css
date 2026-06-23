@@ -292,62 +292,9 @@ main {
   font-size: clamp(1rem, 2vw, 1.15rem);
   color: var(--text-muted);
   max-width: 560px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   opacity: 0;
   animation: fade-up 0.7s var(--ease) 0.4s forwards;
-}
-
-.hero-lead-accent {
-  color: #c49ee8;
-  font-weight: 600;
-}
-
-.hero-flagship {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.85rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 0.85rem 1.25rem;
-  margin-bottom: 2rem;
-  border-radius: 999px;
-  border: 1px solid rgba(240, 180, 41, 0.25);
-  background: linear-gradient(135deg, rgba(240, 180, 41, 0.08), rgba(160, 80, 200, 0.08));
-  color: var(--text);
-  text-decoration: none;
-  transition: transform 0.2s var(--ease), border-color 0.2s, box-shadow 0.2s;
-  opacity: 0;
-  animation: fade-up 0.7s var(--ease) 0.48s forwards;
-}
-
-.hero-flagship:hover {
-  transform: translateY(-2px);
-  border-color: rgba(240, 180, 41, 0.45);
-  box-shadow: 0 8px 32px rgba(240, 180, 41, 0.12);
-}
-
-.hero-flagship-eyebrow {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.hero-flagship-name {
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.hero-flagship-arrow {
-  color: var(--accent);
-  font-size: 1.1rem;
-  transition: transform 0.2s var(--ease);
-}
-
-.hero-flagship:hover .hero-flagship-arrow {
-  transform: translateX(3px);
 }
 
 .hero-actions {
