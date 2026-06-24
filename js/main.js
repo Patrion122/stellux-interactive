@@ -54,8 +54,10 @@
 
   // ── Header scroll state ──
   const header = document.querySelector(".site-header");
+  const scrollHint = document.querySelector(".hero-scroll");
   window.addEventListener("scroll", () => {
     header.classList.toggle("scrolled", window.scrollY > 20);
+    if (scrollHint) scrollHint.classList.toggle("is-hidden", window.scrollY > 48);
   }, { passive: true });
 
   // ── Mobile menu ──

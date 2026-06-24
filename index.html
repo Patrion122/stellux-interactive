@@ -19,13 +19,13 @@
 
   <header class="site-header">
     <a class="logo" href="#top" aria-label="Stellux Interactive home">
-      <img src="assets/icons/stellux-interactive.png" alt="Stellux Interactive" class="logo-full" width="180" height="48" />
+      <img src="assets/icons/stellux-interactive.png" alt="" class="logo-img" width="34" height="34" />
+      <span class="logo-wordmark">Stellux Interactive</span>
     </a>
     <nav class="nav" aria-label="Primary">
       <a href="#about">About</a>
       <a href="#games">Games</a>
       <a href="#tools">Tools</a>
-      <a href="#assets">Assets</a>
       <a href="#contact" class="nav-cta">Contact</a>
     </nav>
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
@@ -41,29 +41,35 @@
           <p class="eyebrow">Game Development Studio</p>
           <h1>Games with weight.<br />Polished tools.<br /><span class="gradient-text">Built to feel great.</span></h1>
           <p class="hero-lead">
-            We build games — from psychological horror to arcade action — and
-            production-ready Unity tools for developers. Built to feel right, not just work.
+            Unity studio — horror games, arcade releases, and Asset Store tools
+            used by other developers.
           </p>
-          <div class="hero-actions">
-            <a href="#games" class="btn btn-primary">View Games</a>
-            <a href="#tools" class="btn btn-ghost">View Tools</a>
+          <div class="hero-footer">
+            <div class="hero-actions">
+              <a href="#games" class="btn btn-primary">View Games</a>
+              <a href="#tools" class="btn btn-ghost-accent">View Tools</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat">
+                <span class="stat-value">2</span>
+                <span class="stat-label">Playable Games</span>
+              </div>
+              <div class="stat stat-flagship">
+                <span class="stat-value">1</span>
+                <span class="stat-label">In Development</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">3</span>
+                <span class="stat-label">Assets &amp; Tools</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-value">2</span>
-          <span class="stat-label">Playable Games</span>
-        </div>
-        <div class="stat stat-flagship">
-          <span class="stat-value">1</span>
-          <span class="stat-label">In Development</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value">3</span>
-          <span class="stat-label">Assets &amp; Tools</span>
-        </div>
-      </div>
+      <a href="#about" class="hero-scroll" aria-label="Scroll down">
+        <span class="hero-scroll-line" aria-hidden="true"></span>
+        <span class="hero-scroll-text">Scroll</span>
+      </a>
     </section>
 
     <section id="about" class="section about">
@@ -182,8 +188,8 @@
     <section class="section projects tools-section">
       <div class="section-header" id="tools">
         <span class="section-tag">Tools</span>
-        <h2>Editor utilities</h2>
-        <p class="section-desc">Workflow tools that live inside the Unity Editor — including our newest Asset Store release.</p>
+        <h2>Unity tools &amp; packages</h2>
+        <p class="section-desc">Editor utilities and drop-in systems — on the Asset Store and itch.io.</p>
       </div>
       <div class="project-grid project-grid-tools">
         <a href="https://assetstore.unity.com/packages/tools/utilities/ai-context-builder-project-exporter-for-chatgpt-claude-gemini-377656" class="project-card tool-card featured featured-release" data-reveal target="_blank" rel="noopener noreferrer">
@@ -233,17 +239,8 @@
             <span class="card-cta">View on Asset Store →</span>
           </div>
         </a>
-      </div>
-    </section>
 
-    <section class="section projects assets-section">
-      <div class="section-header" id="assets">
-        <span class="section-tag">Assets</span>
-        <h2>Unity systems for your project</h2>
-        <p class="section-desc">Code and packages you integrate — not standalone games.</p>
-      </div>
-      <div class="project-grid project-grid-assets">
-        <a href="https://stelluxinteractive.itch.io/velocity" class="project-card featured" data-reveal target="_blank" rel="noopener noreferrer">
+        <a href="https://stelluxinteractive.itch.io/velocity" class="project-card tool-card" data-reveal target="_blank" rel="noopener noreferrer">
           <div class="card-icon-wrap">
             <img src="assets/icons/velocity.png" alt="" class="card-icon-img" width="96" height="96" />
             <span class="platform-badge badge-itch">itch.io</span>
