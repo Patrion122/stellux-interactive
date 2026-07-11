@@ -678,6 +678,7 @@ main {
 .badge-game { background: rgba(99, 179, 237, 0.12); color: #7ec8f0; }
 .badge-prototype { background: var(--accent-soft); color: var(--accent); }
 .badge-horror { background: rgba(160, 80, 200, 0.15); color: #c49ee8; }
+.badge-coop { background: rgba(240, 140, 50, 0.15); color: #f0b060; }
 .badge-flagship-inline {
   background: rgba(240, 180, 41, 0.12);
   color: var(--accent);
@@ -712,6 +713,20 @@ main {
   height: auto;
 }
 
+.card-icon-wrap-wreck {
+  background: linear-gradient(160deg, rgba(40, 22, 8, 0.95), rgba(18, 28, 12, 0.9));
+}
+
+.card-icon-wreck {
+  font-size: 2.25rem;
+  color: rgba(240, 170, 80, 0.9);
+  text-shadow: 0 0 24px rgba(240, 140, 50, 0.45);
+  background: transparent;
+  border: none;
+  width: auto;
+  height: auto;
+}
+
 .project-card h3 {
   font-size: 1.2rem;
   font-weight: 600;
@@ -740,6 +755,85 @@ main {
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border);
+}
+
+.dev-progress {
+  margin-top: 0.25rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+}
+
+.dev-progress-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.dev-progress-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.dev-progress-phase {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.dev-progress-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.dev-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), #e8c060);
+  box-shadow: 0 0 12px var(--accent-glow);
+  transition: width 0.6s var(--ease);
+}
+
+.dev-progress-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  margin-top: 0.75rem;
+  list-style: none;
+}
+
+.dev-progress-steps li {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.dev-progress-steps .is-done {
+  color: var(--text-muted);
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.dev-progress-steps .is-current {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: rgba(240, 180, 41, 0.25);
 }
 
 .card-cta {
