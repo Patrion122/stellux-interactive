@@ -34,7 +34,7 @@ Push to `main`. GitHub Pages publishes from the repository root.
 - **Projects** — cards and gallery data in `index.html` and `js/main.js`
 - **Colors & fonts** — CSS variables at the top of `css/style.css`
 - **Contact email** — `mailto:` links in `index.html`
-- **Screenshots** — source URLs in `tools/fetch-media.py`
+- **Screenshots** — remote URLs in `tools/fetch-media.py`; tool slides in `tools/screenshots/`
 
 ## Structure
 

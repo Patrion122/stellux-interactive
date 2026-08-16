@@ -48,12 +48,13 @@ PROJECTS = {
         "https://img.itch.zone/aW1hZ2UvNDM1ODk4My8yNjYwMTk5MC5wbmc=/original/nF89Fl.png",
         "https://img.itch.zone/aW1hZ2UvNDM1ODk4My8yNjYwMTk5Mi5wbmc=/original/uJ7m%2FL.png",
     ],
-    "ai-context-builder": [
-        "https://assetstorev1-prd-cdn.unity3d.com/key-image/08a858fa-4c95-423d-8feb-0151326191bb.jpg?v=1",
-    ],
-    "project-doctor": [
-        "https://assetstorev1-prd-cdn.unity3d.com/key-image/4360175e-fb19-4062-8335-683560c7e24a.jpg?v=1",
-    ],
+}
+
+# Feature slides stored locally so fetch-media.py does not overwrite them
+# with Asset Store key images.
+LOCAL_PROJECTS = {
+    "ai-context-builder": ROOT / "tools" / "screenshots" / "ai-context-builder",
+    "project-doctor": ROOT / "tools" / "screenshots" / "project-doctor",
 }
 
 PROJECT_ICONS = [
@@ -94,6 +95,21 @@ def save_webp(img: Image.Image, path: Path) -> None:
     out.save(path, "WEBP", quality=WEBP_QUALITY, method=6)
 
 
+def process_local_screenshots() -> None:
+    for slug, folder in LOCAL_PROJECTS.items():
+        files = sorted(folder.glob("*.png"))
+        if not files:
+            print(f"  skip {slug}: no local PNGs in {folder}")
+            continue
+        dest = MEDIA / slug
+        dest.mkdir(parents=True, exist_ok=True)
+        for i, path in enumerate(files, start=1):
+            print(f"  {slug} {i:02d}/{len(files)} (local)")
+            img = ImageOps.exif_transpose(Image.open(path)).convert("RGB")
+            save_webp(cover(img, CARD_SIZE), dest / f"{i:02d}-card.webp")
+            save_webp(img, dest / f"{i:02d}-full.webp")
+
+
 def process_screenshots() -> None:
     for slug, urls in PROJECTS.items():
         dest = MEDIA / slug
@@ -103,6 +119,7 @@ def process_screenshots() -> None:
             img = open_image(fetch(url))
             save_webp(cover(img, CARD_SIZE), dest / f"{i:02d}-card.webp")
             save_webp(cover(img, FULL_SIZE), dest / f"{i:02d}-full.webp")
+    process_local_screenshots()
 
 
 def make_logo_set() -> Image.Image:
