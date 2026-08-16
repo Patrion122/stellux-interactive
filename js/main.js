@@ -4,7 +4,7 @@
   const GALLERIES = {
     trisector: {
       title: "Trisector",
-      trailer: "iSI3nxN5IPo",
+      trailer: "qbIV7_slErA",
       images: [
         { src: "assets/media/trisector/01-full.webp", alt: "Trisector arcade combat" },
         { src: "assets/media/trisector/02-full.webp", alt: "Trisector wave survival" },

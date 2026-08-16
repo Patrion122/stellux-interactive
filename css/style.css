@@ -345,18 +345,6 @@ main {
   animation: fade-up 0.7s var(--ease) 0.4s forwards;
 }
 
-.hero-proof {
-  margin-top: 1.15rem;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  opacity: 0;
-  animation: fade-up 0.7s var(--ease) 0.62s forwards;
-}
-
 .hero-stats {
   display: grid;
   grid-template-columns: repeat(3, 10.75rem);
@@ -1007,30 +995,39 @@ main {
 
 /* ── Lightbox ── */
 .lightbox {
-  width: min(1080px, calc(100vw - 1.5rem));
-  max-width: 100%;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
   padding: 0;
   border: none;
-  background: transparent;
+  background: #05050c;
   color: var(--text);
 }
+.lightbox[open] {
+  display: flex;
+}
 .lightbox::backdrop {
-  background: rgba(4, 4, 12, 0.88);
-  backdrop-filter: blur(10px);
+  background: #05050c;
 }
 .lightbox-inner {
   position: relative;
-  padding: 2.75rem 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
 }
 .lightbox-stage {
-  aspect-ratio: 16 / 9;
+  flex: 1;
+  min-height: 0;
   background: #05050c;
-  border-radius: var(--radius);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--border);
 }
 .lightbox-stage img,
 .lightbox-stage iframe {
@@ -1082,6 +1079,7 @@ main {
 .lightbox-close,
 .lightbox-nav {
   position: absolute;
+  z-index: 2;
   background: rgba(6, 6, 15, 0.78);
   color: var(--text);
   border: 1px solid var(--border);
@@ -1093,17 +1091,17 @@ main {
   text-transform: uppercase;
 }
 .lightbox-close {
-  top: 0;
-  right: 0.5rem;
+  top: 1rem;
+  right: 1rem;
   padding: 0.45rem 0.9rem;
 }
 .lightbox-nav {
-  top: calc(2.75rem + 50%);
+  top: 50%;
   transform: translateY(-50%);
   padding: 0.55rem 0.8rem;
 }
-.lightbox-prev { left: 0.75rem; }
-.lightbox-next { right: 0.75rem; }
+.lightbox-prev { left: 1rem; }
+.lightbox-next { right: 1rem; }
 .lightbox-close:hover,
 .lightbox-nav:hover {
   border-color: var(--border-hover);
@@ -1111,11 +1109,17 @@ main {
 }
 .lightbox-nav[hidden] { display: none; }
 .lightbox-caption {
-  margin-top: 0.75rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1rem;
+  z-index: 2;
+  margin: 0;
   text-align: center;
   font-family: var(--mono);
   font-size: 0.75rem;
   color: var(--text-dim);
+  pointer-events: none;
 }
 
 /* ── Animations ── */
@@ -1192,7 +1196,7 @@ main {
 
   .lightbox-nav {
     top: auto;
-    bottom: 2.75rem;
+    bottom: 3.25rem;
     transform: none;
   }
 }
