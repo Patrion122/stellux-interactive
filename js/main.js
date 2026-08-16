@@ -38,20 +38,20 @@
       title: "AI Context Builder",
       trailer: "qbIV7_slErA",
       images: [
-        { src: "assets/media/ai-context-builder/01-full.webp", alt: "AI Context Builder — fully customizable export" },
-        { src: "assets/media/ai-context-builder/02-full.webp", alt: "AI Context Builder — output control" },
-        { src: "assets/media/ai-context-builder/03-full.webp", alt: "AI Context Builder — manual context" },
-        { src: "assets/media/ai-context-builder/04-full.webp", alt: "AI Context Builder — quick presets" },
+        { src: "assets/media/ai-context-builder/01-full.webp?v=2", alt: "AI Context Builder — fully customizable export" },
+        { src: "assets/media/ai-context-builder/02-full.webp?v=2", alt: "AI Context Builder — output control" },
+        { src: "assets/media/ai-context-builder/03-full.webp?v=2", alt: "AI Context Builder — manual context" },
+        { src: "assets/media/ai-context-builder/04-full.webp?v=2", alt: "AI Context Builder — quick presets" },
       ],
     },
     "project-doctor": {
       title: "Project Doctor Pro",
       trailer: "iEkdLeqDcug",
       images: [
-        { src: "assets/media/project-doctor/01-full.webp", alt: "Project Doctor Pro — batch rename" },
-        { src: "assets/media/project-doctor/02-full.webp", alt: "Project Doctor Pro — organize with one click" },
-        { src: "assets/media/project-doctor/03-full.webp", alt: "Project Doctor Pro — cleanup large and unused assets" },
-        { src: "assets/media/project-doctor/04-full.webp", alt: "Project Doctor Pro — fix broken references" },
+        { src: "assets/media/project-doctor/01-full.webp?v=2", alt: "Project Doctor Pro — batch rename" },
+        { src: "assets/media/project-doctor/02-full.webp?v=2", alt: "Project Doctor Pro — organize with one click" },
+        { src: "assets/media/project-doctor/03-full.webp?v=2", alt: "Project Doctor Pro — cleanup large and unused assets" },
+        { src: "assets/media/project-doctor/04-full.webp?v=2", alt: "Project Doctor Pro — fix broken references" },
       ],
     },
   };

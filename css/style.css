@@ -1050,6 +1050,9 @@ main {
   object-fit: contain;
   border: 0;
 }
+.lightbox-stage img {
+  image-rendering: auto;
+}
 .yt-facade {
   position: relative;
   display: block;

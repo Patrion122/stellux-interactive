@@ -89,10 +89,13 @@ def cover(img: Image.Image, size: tuple[int, int]) -> Image.Image:
     return ImageOps.fit(img, size, method=Image.Resampling.LANCZOS, centering=(0.5, 0.5))
 
 
-def save_webp(img: Image.Image, path: Path) -> None:
+def save_webp(img: Image.Image, path: Path, *, quality: int = WEBP_QUALITY, lossless: bool = False) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     out = img.convert("RGB") if img.mode != "RGB" else img
-    out.save(path, "WEBP", quality=WEBP_QUALITY, method=6)
+    if lossless:
+        out.save(path, "WEBP", lossless=True, method=6)
+    else:
+        out.save(path, "WEBP", quality=quality, method=6)
 
 
 def process_local_screenshots() -> None:
@@ -106,8 +109,8 @@ def process_local_screenshots() -> None:
         for i, path in enumerate(files, start=1):
             print(f"  {slug} {i:02d}/{len(files)} (local)")
             img = ImageOps.exif_transpose(Image.open(path)).convert("RGB")
-            save_webp(cover(img, CARD_SIZE), dest / f"{i:02d}-card.webp")
-            save_webp(img, dest / f"{i:02d}-full.webp")
+            save_webp(cover(img, CARD_SIZE), dest / f"{i:02d}-card.webp", quality=90)
+            save_webp(img, dest / f"{i:02d}-full.webp", lossless=True)
 
 
 def process_screenshots() -> None:
