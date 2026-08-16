@@ -1,16 +1,75 @@
 (function () {
   "use strict";
 
+  const GALLERIES = {
+    trisector: {
+      title: "Trisector",
+      trailer: "iSI3nxN5IPo",
+      images: [
+        { src: "assets/media/trisector/01-full.webp", alt: "Trisector arcade combat" },
+        { src: "assets/media/trisector/02-full.webp", alt: "Trisector wave survival" },
+        { src: "assets/media/trisector/03-full.webp", alt: "Trisector upgrades" },
+        { src: "assets/media/trisector/04-full.webp", alt: "Trisector gameplay" },
+        { src: "assets/media/trisector/05-full.webp", alt: "Trisector arena" },
+        { src: "assets/media/trisector/06-full.webp", alt: "Trisector high score run" },
+      ],
+    },
+    swiftkill: {
+      title: "SWIFTKILL",
+      trailer: "tYMcud0uNGM",
+      images: [
+        { src: "assets/media/swiftkill/01-full.webp", alt: "SWIFTKILL arena combat" },
+        { src: "assets/media/swiftkill/02-full.webp", alt: "SWIFTKILL movement" },
+        { src: "assets/media/swiftkill/03-full.webp", alt: "SWIFTKILL one-hit kill" },
+        { src: "assets/media/swiftkill/04-full.webp", alt: "SWIFTKILL sci-fi arena" },
+        { src: "assets/media/swiftkill/05-full.webp", alt: "SWIFTKILL precision play" },
+        { src: "assets/media/swiftkill/06-full.webp", alt: "SWIFTKILL prototype screenshot" },
+      ],
+    },
+    velocity: {
+      title: "Velocity — Advanced FPS Movement",
+      trailer: "zc6Zkf8_k6s",
+      images: [
+        { src: "assets/media/velocity/01-full.webp", alt: "Velocity wallrunning and sliding" },
+        { src: "assets/media/velocity/02-full.webp", alt: "Velocity FPS movement demo" },
+      ],
+    },
+    "ai-context-builder": {
+      title: "AI Context Builder",
+      images: [
+        { src: "assets/media/ai-context-builder/01-full.webp", alt: "AI Context Builder Unity editor tool" },
+      ],
+    },
+    "project-doctor": {
+      title: "Project Doctor Pro",
+      images: [
+        { src: "assets/media/project-doctor/01-full.webp", alt: "Project Doctor Pro cleanup tools" },
+      ],
+    },
+  };
+
   // ── Starfield ──
   const canvas = document.getElementById("stars");
   const ctx = canvas.getContext("2d");
   let stars = [];
-  let w, h;
+  let w = 0;
+  let h = 0;
+  let lastWidth = 0;
+  let rafId = 0;
+  let resizeTimer = 0;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
+  function resizeCanvas() {
+    const cssW = window.innerWidth;
+    const cssH = window.innerHeight;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.floor(cssW * dpr);
+    canvas.height = Math.floor(cssH * dpr);
+    canvas.style.width = cssW + "px";
+    canvas.style.height = cssH + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    w = cssW;
+    h = cssH;
     initStars();
   }
 
@@ -45,12 +104,43 @@
         }
       }
     }
-    if (!prefersReducedMotion) requestAnimationFrame(drawStars);
   }
 
-  window.addEventListener("resize", resize);
-  resize();
-  drawStars();
+  function loop() {
+    drawStars();
+    if (!prefersReducedMotion && document.visibilityState === "visible") {
+      rafId = requestAnimationFrame(loop);
+    }
+  }
+
+  function startLoop() {
+    if (prefersReducedMotion || document.visibilityState !== "visible") {
+      drawStars();
+      return;
+    }
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(loop);
+  }
+
+  window.addEventListener("resize", () => {
+    const cssW = window.innerWidth;
+    if (cssW === lastWidth) return;
+    lastWidth = cssW;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resizeCanvas, 150);
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+      cancelAnimationFrame(rafId);
+    } else {
+      startLoop();
+    }
+  });
+
+  lastWidth = window.innerWidth;
+  resizeCanvas();
+  startLoop();
 
   // ── Header scroll state ──
   const header = document.querySelector(".site-header");
@@ -64,16 +154,30 @@
   const toggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".nav");
 
-  toggle.addEventListener("click", () => {
+  function closeMenu() {
+    nav.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Open menu");
+  }
+
+  toggle.addEventListener("click", (event) => {
+    event.stopPropagation();
     const open = nav.classList.toggle("open");
     toggle.setAttribute("aria-expanded", open);
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   });
 
   nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("open");
-      toggle.setAttribute("aria-expanded", "false");
-    });
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!nav.classList.contains("open")) return;
+    if (!nav.contains(event.target) && !toggle.contains(event.target)) closeMenu();
   });
 
   // ── Scroll reveal ──
@@ -90,6 +194,118 @@
     { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
   );
   revealEls.forEach((el) => observer.observe(el));
+
+  // ── Lightbox ──
+  const dialog = document.getElementById("lightbox");
+  const stage = dialog.querySelector(".lightbox-stage");
+  const caption = dialog.querySelector(".lightbox-caption");
+  const titleEl = document.getElementById("lightbox-title");
+  const prevBtn = dialog.querySelector(".lightbox-prev");
+  const nextBtn = dialog.querySelector(".lightbox-next");
+  const closeBtn = dialog.querySelector(".lightbox-close");
+  let slides = [];
+  let slideIndex = 0;
+
+  function buildSlides(gallery) {
+    const list = [];
+    if (gallery.trailer) {
+      list.push({
+        type: "trailer",
+        id: gallery.trailer,
+        poster: gallery.images[0] ? gallery.images[0].src : "",
+        alt: gallery.title + " trailer",
+      });
+    }
+    gallery.images.forEach((image) => {
+      list.push({ type: "image", src: image.src, alt: image.alt });
+    });
+    return list;
+  }
+
+  function stopTrailer() {
+    const iframe = stage.querySelector("iframe");
+    if (iframe) iframe.remove();
+  }
+
+  function renderSlide() {
+    const slide = slides[slideIndex];
+    if (!slide) return;
+    stopTrailer();
+    stage.replaceChildren();
+
+    if (slide.type === "trailer") {
+      const facade = document.createElement("button");
+      facade.type = "button";
+      facade.className = "yt-facade";
+      facade.setAttribute("aria-label", "Play trailer");
+      const poster = document.createElement("img");
+      poster.src = "https://i.ytimg.com/vi/" + slide.id + "/hqdefault.jpg";
+      poster.alt = slide.alt;
+      const play = document.createElement("span");
+      play.className = "yt-play";
+      const playLabel = document.createElement("span");
+      playLabel.textContent = "Play";
+      play.appendChild(playLabel);
+      facade.append(poster, play);
+      facade.addEventListener("click", () => {
+        const iframe = document.createElement("iframe");
+        iframe.src = "https://www.youtube-nocookie.com/embed/" + slide.id + "?autoplay=1";
+        iframe.title = slide.alt;
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        stage.replaceChildren(iframe);
+      });
+      stage.appendChild(facade);
+    } else {
+      const img = document.createElement("img");
+      img.src = slide.src;
+      img.alt = slide.alt;
+      stage.appendChild(img);
+    }
+
+    caption.textContent = slides.length > 1
+      ? (slideIndex + 1) + " / " + slides.length
+      : (slide.alt || "");
+    const many = slides.length > 1;
+    prevBtn.hidden = !many;
+    nextBtn.hidden = !many;
+  }
+
+  function openGallery(id, start) {
+    const gallery = GALLERIES[id];
+    if (!gallery) return;
+    slides = buildSlides(gallery);
+    titleEl.textContent = gallery.title;
+    slideIndex = 0;
+    if (start !== "trailer" && gallery.trailer) slideIndex = 1;
+    if (slideIndex >= slides.length) slideIndex = 0;
+    renderSlide();
+    if (typeof dialog.showModal === "function") dialog.showModal();
+  }
+
+  function step(delta) {
+    if (slides.length < 2) return;
+    slideIndex = (slideIndex + delta + slides.length) % slides.length;
+    renderSlide();
+  }
+
+  document.querySelectorAll("[data-gallery]").forEach((el) => {
+    el.addEventListener("click", () => {
+      openGallery(el.getAttribute("data-gallery"), el.getAttribute("data-start"));
+    });
+  });
+
+  prevBtn.addEventListener("click", () => step(-1));
+  nextBtn.addEventListener("click", () => step(1));
+  closeBtn.addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog.addEventListener("close", stopTrailer);
+  dialog.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") step(-1);
+    if (event.key === "ArrowRight") step(1);
+  });
 
   // ── Footer year ──
   document.getElementById("year").textContent = new Date().getFullYear();

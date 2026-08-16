@@ -3,23 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stellux Interactive — Unity Games &amp; Developer Tools</title>
   <meta name="description" content="Stellux Interactive — Unity game development studio. Psychological horror, arcade games, and production-ready developer tools." />
-  <meta property="og:title" content="Stellux Interactive" />
-  <meta property="og:description" content="Unity game studio — horror, arcade games, and production-ready developer tools." />
-  <meta property="og:image" content="assets/icons/stellux-interactive.png" />
-  <title>Stellux Interactive</title>
+  <link rel="canonical" href="https://stelluxinteractive.com/" />
+
+  <meta property="og:title" content="Stellux Interactive — Unity Games &amp; Developer Tools" />
+  <meta property="og:description" content="Unity game studio — arcade games, a co-op title in development, and production-ready developer tools." />
+  <meta property="og:image" content="https://stelluxinteractive.com/assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://stelluxinteractive.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stellux Interactive" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Stellux Interactive — Unity Games &amp; Developer Tools" />
+  <meta name="twitter:description" content="Unity game studio — arcade games, a co-op title in development, and production-ready developer tools." />
+  <meta name="twitter:image" content="https://stelluxinteractive.com/assets/og.png" />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=5f2cdd7" />
-  <link rel="icon" href="assets/icons/stellux-interactive.png" />
+  <link rel="stylesheet" href="css/style.css?v=17aug26" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://stelluxinteractive.com/#studio",
+        "name": "Stellux Interactive",
+        "url": "https://stelluxinteractive.com/",
+        "email": "stelluxinteractive@gmail.com",
+        "logo": "https://stelluxinteractive.com/assets/og.png",
+        "sameAs": [
+          "https://stelluxinteractive.itch.io",
+          "https://assetstore.unity.com/publishers/139358"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "name": "Stellux Interactive",
+        "url": "https://stelluxinteractive.com/",
+        "publisher": { "@id": "https://stelluxinteractive.com/#studio" }
+      },
+      {
+        "@type": "VideoGame",
+        "name": "Trisector",
+        "url": "https://stelluxinteractive.itch.io/trisector",
+        "author": { "@id": "https://stelluxinteractive.com/#studio" },
+        "gamePlatform": "Android",
+        "genre": "Arcade"
+      },
+      {
+        "@type": "VideoGame",
+        "name": "SWIFTKILL",
+        "url": "https://stelluxinteractive.itch.io/swiftkill-prototype",
+        "author": { "@id": "https://stelluxinteractive.com/#studio" },
+        "genre": "Action"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "AI Context Builder",
+        "url": "https://assetstore.unity.com/packages/tools/utilities/ai-context-builder-project-exporter-for-chatgpt-claude-gemini-377656",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows, macOS, Linux",
+        "author": { "@id": "https://stelluxinteractive.com/#studio" },
+        "offers": {
+          "@type": "Offer",
+          "price": "19.99",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Project Doctor Pro",
+        "url": "https://assetstore.unity.com/packages/tools/utilities/project-doctor-pro-organize-cleanup-repair-368910",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows, macOS, Linux",
+        "author": { "@id": "https://stelluxinteractive.com/#studio" },
+        "offers": {
+          "@type": "Offer",
+          "price": "15.00",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Velocity — Advanced FPS Movement",
+        "url": "https://stelluxinteractive.itch.io/velocity",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows, macOS, Linux",
+        "author": { "@id": "https://stelluxinteractive.com/#studio" }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to content</a>
   <canvas id="stars" aria-hidden="true"></canvas>
 
   <header class="site-header">
     <a class="logo" href="#top" aria-label="Stellux Interactive home">
-      <img src="assets/icons/stellux-interactive.png" alt="" class="logo-img" width="34" height="34" />
+      <img
+        src="assets/icons/logo-64.webp"
+        srcset="assets/icons/logo-64.webp 1x, assets/icons/logo-128.webp 2x"
+        alt=""
+        class="logo-img"
+        width="34"
+        height="34"
+      />
       <span class="logo-wordmark">Stellux Interactive</span>
     </a>
     <nav class="nav" aria-label="Primary">
@@ -36,7 +132,7 @@
   <main id="top">
     <section class="hero">
       <div class="hero-glow" aria-hidden="true"></div>
-      <div class="hero-layout hero-layout-centered">
+      <div class="hero-layout-centered">
         <div class="hero-content">
           <p class="eyebrow">Game Development Studio</p>
           <h1>Games with weight.<br />Polished tools.<br /><span class="gradient-text">Built to feel great.</span></h1>
@@ -48,19 +144,20 @@
               <a href="#games" class="btn btn-primary">View Games</a>
               <a href="#tools" class="btn btn-ghost-accent">View Tools</a>
             </div>
+            <p class="hero-proof">Bestseller on the Unity Asset Store</p>
             <div class="hero-stats">
-              <div class="stat">
+              <a href="#games" class="stat">
                 <span class="stat-value">2</span>
                 <span class="stat-label">Playable Games</span>
-              </div>
-              <div class="stat stat-flagship">
+              </a>
+              <a href="#next-game" class="stat stat-flagship">
                 <span class="stat-value">1</span>
                 <span class="stat-label">In Development</span>
-              </div>
-              <div class="stat">
+              </a>
+              <a href="#tools" class="stat">
                 <span class="stat-value">3</span>
                 <span class="stat-label">Assets &amp; Tools</span>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -106,53 +203,40 @@
     <section class="section projects">
       <div class="section-header" id="games">
         <span class="section-tag">Games</span>
-        <h2>Released, prototype &amp; currently building</h2>
-        <p class="section-desc">Playable now or in development — full games, not assets.</p>
+        <h2>Playable now</h2>
+        <p class="section-desc">Arcade and combat titles you can download on itch.io.</p>
       </div>
-      <div class="project-grid project-grid-games">
-        <article id="next-game" class="project-card featured featured-flagship coming-soon" data-reveal>
-          <div class="card-icon-wrap card-icon-wrap-echo">
-            <span class="card-icon-fallback card-icon-echo" aria-hidden="true">◎</span>
-            <span class="platform-badge badge-flagship">In Development</span>
-          </div>
-          <div class="card-body">
-            <div class="card-top">
-              <span class="card-badge badge-game">Co-op Game</span>
-            </div>
-            <h3>Next Game</h3>
-            <p>
-              Early prototype of a new co-op game — built from the ground up. More when
-              there's something worth showing.
-            </p>
-            <div class="dev-progress" aria-label="Development progress: Prototype phase, approximately 30%">
-              <div class="dev-progress-header">
-                <span class="dev-progress-label">Development</span>
-                <span class="dev-progress-phase">Prototype</span>
-              </div>
-              <div class="dev-progress-track" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                <div class="dev-progress-fill" style="width: 30%"></div>
-              </div>
-              <ol class="dev-progress-steps">
-                <li class="is-done">Concept</li>
-                <li class="is-current" aria-current="step">Prototype</li>
-                <li>Playable</li>
-                <li>Polish</li>
-                <li>Release</li>
-              </ol>
-            </div>
-          </div>
-        </article>
 
-        <a href="https://stelluxinteractive.itch.io/trisector" class="project-card" data-reveal target="_blank" rel="noopener noreferrer">
-          <div class="card-icon-wrap">
-            <img src="assets/icons/trisector.png" alt="" class="card-icon-img" width="96" height="96" />
-            <span class="platform-badge badge-itch">itch.io</span>
+      <aside class="building-strip" id="next-game" data-reveal>
+        <div class="building-copy">
+          <span class="platform-badge badge-flagship">In Development</span>
+          <p>A new co-op game is in prototype. More when there's something worth showing.</p>
+        </div>
+        <div class="dev-progress" aria-label="Development progress: Prototype phase, approximately 30%">
+          <div class="dev-progress-header">
+            <span class="dev-progress-label">Development</span>
+            <span class="dev-progress-phase">Prototype</span>
           </div>
+          <div class="dev-progress-track" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+            <div class="dev-progress-fill" style="width: 30%"></div>
+          </div>
+        </div>
+        <a href="https://stelluxinteractive.itch.io" class="building-follow" target="_blank" rel="noopener noreferrer">Follow on itch.io</a>
+      </aside>
+
+      <div class="project-grid project-grid-games">
+        <article class="project-card" data-reveal>
+          <button class="card-media" type="button" data-gallery="trisector" aria-label="View screenshots: Trisector">
+            <img src="assets/media/trisector/01-card.webp" alt="" class="card-media-img" width="800" height="450" loading="lazy" decoding="async" />
+            <img src="assets/icons/trisector-96.webp" alt="" class="card-media-icon" width="48" height="48" loading="lazy" decoding="async" />
+            <span class="platform-badge badge-itch">itch.io</span>
+            <span class="card-media-count">6 screenshots</span>
+          </button>
           <div class="card-body">
             <div class="card-top">
-              <span class="card-badge badge-game">Game</span>
+              <span class="card-badge">Game</span>
             </div>
-            <h3>Trisector</h3>
+            <h3><a href="https://stelluxinteractive.itch.io/trisector" target="_blank" rel="noopener noreferrer">Trisector</a></h3>
             <p>
               Destroy enemies, upgrade your triangle, and chase high scores in this
               arcade wave-survival shooter. Our first complete game release.
@@ -162,20 +246,25 @@
               <li>Android</li>
               <li>Upgrades</li>
             </ul>
-            <span class="card-cta">Download free →</span>
+            <div class="card-actions">
+              <a class="card-cta" href="https://stelluxinteractive.itch.io/trisector" target="_blank" rel="noopener noreferrer">Download free</a>
+              <button class="card-cta-secondary" type="button" data-gallery="trisector" data-start="trailer">Watch trailer</button>
+            </div>
           </div>
-        </a>
+        </article>
 
-        <a href="https://stelluxinteractive.itch.io/swiftkill-prototype" class="project-card" data-reveal target="_blank" rel="noopener noreferrer">
-          <div class="card-icon-wrap">
-            <img src="assets/icons/swiftkill.png" alt="" class="card-icon-img" width="96" height="96" />
+        <article class="project-card" data-reveal>
+          <button class="card-media" type="button" data-gallery="swiftkill" aria-label="View screenshots: SWIFTKILL">
+            <img src="assets/media/swiftkill/01-card.webp" alt="" class="card-media-img" width="800" height="450" loading="lazy" decoding="async" />
+            <img src="assets/icons/swiftkill-96.webp" alt="" class="card-media-icon" width="48" height="48" loading="lazy" decoding="async" />
             <span class="platform-badge badge-itch">itch.io</span>
-          </div>
+            <span class="card-media-count">6 screenshots</span>
+          </button>
           <div class="card-body">
             <div class="card-top">
-              <span class="card-badge badge-prototype">Prototype</span>
+              <span class="card-badge">Prototype</span>
             </div>
-            <h3>SWIFTKILL</h3>
+            <h3><a href="https://stelluxinteractive.itch.io/swiftkill-prototype" target="_blank" rel="noopener noreferrer">SWIFTKILL</a></h3>
             <p>
               One-hit-one-kill combat in a minimalist sci-fi arena. Master speed,
               precision, and fluid movement — miss once and you're done.
@@ -185,9 +274,12 @@
               <li>Speedrun</li>
               <li>One-Hit Kill</li>
             </ul>
-            <span class="card-cta">Download prototype →</span>
+            <div class="card-actions">
+              <a class="card-cta" href="https://stelluxinteractive.itch.io/swiftkill-prototype" target="_blank" rel="noopener noreferrer">Download prototype</a>
+              <button class="card-cta-secondary" type="button" data-gallery="swiftkill" data-start="trailer">Watch trailer</button>
+            </div>
           </div>
-        </a>
+        </article>
       </div>
     </section>
 
@@ -198,76 +290,90 @@
         <p class="section-desc">Editor utilities and drop-in systems — on the Asset Store and itch.io.</p>
       </div>
       <div class="project-grid project-grid-tools">
-        <a href="https://assetstore.unity.com/packages/tools/utilities/ai-context-builder-project-exporter-for-chatgpt-claude-gemini-377656" class="project-card tool-card featured" data-reveal target="_blank" rel="noopener noreferrer">
-          <div class="card-icon-wrap">
-            <img src="assets/icons/ai-context-builder.png" alt="" class="card-icon-img" width="96" height="96" />
+        <article class="project-card tool-card featured" data-reveal>
+          <button class="card-media" type="button" data-gallery="ai-context-builder" aria-label="View screenshots: AI Context Builder">
+            <img src="assets/media/ai-context-builder/01-card.webp" alt="" class="card-media-img" width="800" height="450" loading="lazy" decoding="async" />
+            <img src="assets/icons/ai-context-builder-96.webp" alt="" class="card-media-icon" width="48" height="48" loading="lazy" decoding="async" />
             <span class="platform-badge badge-store">Asset Store</span>
-          </div>
+          </button>
           <div class="card-body">
             <div class="card-top card-top-badges">
-              <span class="card-badge badge-tool">Editor Tool</span>
-              <span class="card-badge badge-bestseller">Bestseller</span>
+              <span class="card-badge">Editor Tool</span>
+              <span class="card-badge">Bestseller</span>
             </div>
-            <h3>AI Context Builder</h3>
+            <h3><a href="https://assetstore.unity.com/packages/tools/utilities/ai-context-builder-project-exporter-for-chatgpt-claude-gemini-377656" target="_blank" rel="noopener noreferrer">AI Context Builder</a></h3>
             <p>
               Export structured, token-optimized Unity project blueprints for
               ChatGPT, Claude, and Gemini — faster debugging and smarter codegen.
             </p>
+            <p class="card-meta">$19.99 · Unity 2021+</p>
             <ul class="card-tags">
               <li>AI Workflow</li>
               <li>Documentation</li>
               <li>One Click</li>
             </ul>
-            <span class="card-cta">View on Asset Store →</span>
+            <div class="card-actions">
+              <a class="card-cta" href="https://assetstore.unity.com/packages/tools/utilities/ai-context-builder-project-exporter-for-chatgpt-claude-gemini-377656" target="_blank" rel="noopener noreferrer">View on Asset Store</a>
+            </div>
           </div>
-        </a>
+        </article>
 
-        <a href="https://assetstore.unity.com/packages/tools/utilities/project-doctor-pro-organize-cleanup-repair-368910" class="project-card tool-card" data-reveal target="_blank" rel="noopener noreferrer">
-          <div class="card-icon-wrap">
-            <img src="assets/icons/project-doctor.png" alt="" class="card-icon-img" width="96" height="96" />
+        <article class="project-card tool-card" data-reveal>
+          <button class="card-media" type="button" data-gallery="project-doctor" aria-label="View screenshots: Project Doctor Pro">
+            <img src="assets/media/project-doctor/01-card.webp" alt="" class="card-media-img" width="800" height="450" loading="lazy" decoding="async" />
+            <img src="assets/icons/project-doctor-96.webp" alt="" class="card-media-icon" width="48" height="48" loading="lazy" decoding="async" />
             <span class="platform-badge badge-store">Asset Store</span>
-          </div>
+          </button>
           <div class="card-body">
             <div class="card-top">
-              <span class="card-badge badge-tool">Editor Tool</span>
+              <span class="card-badge">Editor Tool</span>
             </div>
-            <h3>Project Doctor Pro</h3>
+            <h3><a href="https://assetstore.unity.com/packages/tools/utilities/project-doctor-pro-organize-cleanup-repair-368910" target="_blank" rel="noopener noreferrer">Project Doctor Pro</a></h3>
             <p>
               Fix broken references, batch rename, and auto-organize your project in
               seconds. One-click diagnostics for messy Unity projects.
             </p>
+            <p class="card-meta">$15.00 · Unity 2021+</p>
             <ul class="card-tags">
               <li>Cleanup</li>
               <li>References</li>
               <li>Batch Rename</li>
             </ul>
-            <span class="card-cta">View on Asset Store →</span>
+            <div class="card-actions">
+              <a class="card-cta" href="https://assetstore.unity.com/packages/tools/utilities/project-doctor-pro-organize-cleanup-repair-368910" target="_blank" rel="noopener noreferrer">View on Asset Store</a>
+            </div>
           </div>
-        </a>
+        </article>
 
-        <a href="https://stelluxinteractive.itch.io/velocity" class="project-card tool-card" data-reveal target="_blank" rel="noopener noreferrer">
-          <div class="card-icon-wrap">
-            <img src="assets/icons/velocity.png" alt="" class="card-icon-img" width="96" height="96" />
+        <article class="project-card tool-card" data-reveal>
+          <button class="card-media" type="button" data-gallery="velocity" aria-label="View screenshots: Velocity">
+            <img src="assets/media/velocity/01-card.webp" alt="" class="card-media-img" width="800" height="450" loading="lazy" decoding="async" />
+            <img src="assets/icons/velocity-96.webp" alt="" class="card-media-icon" width="48" height="48" loading="lazy" decoding="async" />
             <span class="platform-badge badge-itch">itch.io</span>
-          </div>
+            <span class="card-media-count">2 screenshots</span>
+          </button>
           <div class="card-body">
             <div class="card-top">
-              <span class="card-badge badge-asset">Movement System</span>
+              <span class="card-badge">Movement System</span>
             </div>
-            <h3>Velocity — Advanced FPS Movement</h3>
+            <h3><a href="https://stelluxinteractive.itch.io/velocity" target="_blank" rel="noopener noreferrer">Velocity — Advanced FPS Movement</a></h3>
             <p>
               A drop-in Unity movement framework — wallrunning, sliding, dashing, and
               grappling. Import the package, configure parameters, and ship AAA-feel
               movement in your own game.
             </p>
+            <p class="card-meta">Pay what you want · Unity 2021+</p>
             <ul class="card-tags">
               <li>Unity Package</li>
               <li>Modular</li>
               <li>Configurable</li>
             </ul>
-            <span class="card-cta">Get the system →</span>
+            <div class="card-actions">
+              <a class="card-cta" href="https://stelluxinteractive.itch.io/velocity" target="_blank" rel="noopener noreferrer">Get the system</a>
+              <button class="card-cta-secondary" type="button" data-gallery="velocity" data-start="trailer">Watch trailer</button>
+            </div>
           </div>
-        </a>
+        </article>
       </div>
     </section>
 
@@ -293,10 +399,37 @@
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> Stellux Interactive</p>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <p class="footer-name">Stellux Interactive</p>
+        <p>© <span id="year"></span> Stellux Interactive</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#about">About</a>
+        <a href="#games">Games</a>
+        <a href="#tools">Tools</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="footer-links">
+        <a href="https://stelluxinteractive.itch.io" target="_blank" rel="noopener noreferrer">itch.io</a>
+        <a href="https://assetstore.unity.com/publishers/139358" target="_blank" rel="noopener noreferrer">Unity Asset Store</a>
+        <a href="mailto:stelluxinteractive@gmail.com">stelluxinteractive@gmail.com</a>
+      </div>
+    </div>
   </footer>
 
-  <script src="js/main.js?v=5f2cdd7"></script>
+  <dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-title">
+    <div class="lightbox-inner">
+      <button type="button" class="lightbox-close" aria-label="Close gallery">Close</button>
+      <h2 id="lightbox-title" class="visually-hidden">Gallery</h2>
+      <div class="lightbox-stage"></div>
+      <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous">Previous</button>
+      <button type="button" class="lightbox-nav lightbox-next" aria-label="Next">Next</button>
+      <p class="lightbox-caption"></p>
+    </div>
+  </dialog>
+
+  <script src="js/main.js?v=17aug26"></script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "831b83116ac34b839e330c0381dafc59"}'></script>
 </body>
 </html>

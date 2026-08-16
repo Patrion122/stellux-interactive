@@ -1,41 +1,48 @@
 # Stellux Interactive — Portfolio Site
 
-Modern single-page portfolio for [Stellux Interactive](https://sites.google.com/view/stelluxinteractive).
+Studio site for [Stellux Interactive](https://stelluxinteractive.com).
+
+Static HTML/CSS/JS, hosted on GitHub Pages with a custom domain.
 
 ## Preview locally
 
 Open `index.html` in a browser, or run a simple server:
 
 ```powershell
-# Python
 python -m http.server 8080
-
-# Node (if npx is available)
-npx serve .
 ```
 
 Then visit `http://localhost:8080`.
 
+## Refresh media
+
+Screenshots, OG image, favicon, and compressed logos are generated from itch.io / Asset Store sources:
+
+```powershell
+python -m pip install Pillow
+python tools/fetch-media.py
+```
+
+Output lands in `assets/media/`, plus `assets/og.png`, `favicon.ico`, and `apple-touch-icon.png`.
+
 ## Deploy
 
-This is a static site — no build step required. Deploy to any of:
-
-- **GitHub Pages** — push to a repo and enable Pages from the root
-- **Netlify** — drag-and-drop the folder or connect the repo
-- **Cloudflare Pages** — same as Netlify
-
-Point your custom domain at the host when ready.
+Push to `main`. GitHub Pages publishes from the repository root.
 
 ## Customize
 
-- **Projects** — edit cards in `index.html`
+- **Projects** — cards and gallery data in `index.html` and `js/main.js`
 - **Colors & fonts** — CSS variables at the top of `css/style.css`
-- **Contact email** — update the `mailto:` links in `index.html`
+- **Contact email** — `mailto:` links in `index.html`
+- **Screenshots** — source URLs in `tools/fetch-media.py`
 
 ## Structure
 
 ```
-index.html      Main page
-css/style.css   Styles
-js/main.js      Starfield, nav, scroll animations
+index.html              Main page
+404.html                Custom not-found page
+css/style.css           Styles
+js/main.js              Starfield, nav, lightbox
+assets/media/           Optimized screenshots
+tools/fetch-media.py    Media downloader
 ```
