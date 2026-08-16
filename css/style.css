@@ -996,34 +996,34 @@ main {
 /* ── Lightbox ── */
 .lightbox {
   width: 100vw;
-  max-width: 100vw;
-  height: 100vh;
   height: 100dvh;
-  max-height: 100dvh;
+  max-width: none;
+  max-height: none;
   margin: 0;
   padding: 0;
   border: none;
-  background: #05050c;
+  background: #04040c;
   color: var(--text);
 }
-.lightbox[open] {
-  display: flex;
+.lightbox:modal {
+  max-width: none;
+  max-height: none;
 }
 .lightbox::backdrop {
-  background: #05050c;
+  background: #04040c;
 }
 .lightbox-inner {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
   height: 100%;
-  padding: 0;
+  min-height: 100dvh;
+  padding: 4.25rem 1rem 3.25rem;
 }
 .lightbox-stage {
   flex: 1;
   min-height: 0;
-  background: #05050c;
+  background: #000;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -1049,7 +1049,7 @@ main {
 .yt-facade img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .yt-play {
   position: absolute;
@@ -1078,7 +1078,7 @@ main {
 }
 .lightbox-close,
 .lightbox-nav {
-  position: absolute;
+  position: fixed;
   z-index: 2;
   background: rgba(6, 6, 15, 0.78);
   color: var(--text);
@@ -1093,12 +1093,12 @@ main {
 .lightbox-close {
   top: 1rem;
   right: 1rem;
-  padding: 0.45rem 0.9rem;
+  padding: 0.5rem 1rem;
 }
 .lightbox-nav {
   top: 50%;
   transform: translateY(-50%);
-  padding: 0.55rem 0.8rem;
+  padding: 0.65rem 0.95rem;
 }
 .lightbox-prev { left: 1rem; }
 .lightbox-next { right: 1rem; }
@@ -1113,13 +1113,11 @@ main {
   left: 0;
   right: 0;
   bottom: 1rem;
-  z-index: 2;
   margin: 0;
   text-align: center;
   font-family: var(--mono);
   font-size: 0.75rem;
   color: var(--text-dim);
-  pointer-events: none;
 }
 
 /* ── Animations ── */
@@ -1194,11 +1192,17 @@ main {
     text-align: left;
   }
 
+  .lightbox-inner {
+    padding: 4.25rem 0.5rem 3.5rem;
+  }
   .lightbox-nav {
     top: auto;
-    bottom: 3.25rem;
+    bottom: 1rem;
     transform: none;
   }
+  .lightbox-prev { left: 0.75rem; }
+  .lightbox-next { right: 0.75rem; }
+  .lightbox-caption { bottom: 3.4rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

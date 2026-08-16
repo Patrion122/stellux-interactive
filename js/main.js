@@ -4,7 +4,7 @@
   const GALLERIES = {
     trisector: {
       title: "Trisector",
-      trailer: "qbIV7_slErA",
+      trailer: "iSI3nxN5IPo",
       images: [
         { src: "assets/media/trisector/01-full.webp", alt: "Trisector arcade combat" },
         { src: "assets/media/trisector/02-full.webp", alt: "Trisector wave survival" },
@@ -36,12 +36,14 @@
     },
     "ai-context-builder": {
       title: "AI Context Builder",
+      trailer: "qbIV7_slErA",
       images: [
         { src: "assets/media/ai-context-builder/01-full.webp", alt: "AI Context Builder Unity editor tool" },
       ],
     },
     "project-doctor": {
       title: "Project Doctor Pro",
+      trailer: "iEkdLeqDcug",
       images: [
         { src: "assets/media/project-doctor/01-full.webp", alt: "Project Doctor Pro cleanup tools" },
       ],
