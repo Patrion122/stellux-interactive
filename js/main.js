@@ -260,6 +260,21 @@
     });
   }
 
+  function playTrailer(node) {
+    if (!node || node.dataset.type !== "trailer") return;
+    const slide = slides[slideNodes.indexOf(node)];
+    if (!slide) return;
+    const facade = node.querySelector(".yt-facade");
+    if (facade) facade.hidden = true;
+    if (node.querySelector("iframe")) return;
+    const iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube-nocookie.com/embed/" + slide.id + "?autoplay=1";
+    iframe.title = slide.alt;
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+    iframe.allowFullscreen = true;
+    node.appendChild(iframe);
+  }
+
   function buildTrailerNode(slide) {
     const wrap = document.createElement("div");
     wrap.className = "lightbox-slide";
@@ -283,15 +298,7 @@
     play.innerHTML = "<span></span>";
     facade.append(poster, play);
 
-    facade.addEventListener("click", () => {
-      facade.hidden = true;
-      const iframe = document.createElement("iframe");
-      iframe.src = "https://www.youtube-nocookie.com/embed/" + slide.id + "?autoplay=1";
-      iframe.title = slide.alt;
-      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-      iframe.allowFullscreen = true;
-      wrap.appendChild(iframe);
-    });
+    facade.addEventListener("click", () => playTrailer(wrap));
 
     wrap.appendChild(facade);
     return wrap;
@@ -318,7 +325,7 @@
     slideNodes.forEach((node) => stage.appendChild(node));
   }
 
-  function renderSlide() {
+  function renderSlide(autoplayTrailer) {
     const slide = slides[slideIndex];
     if (!slide || !slideNodes.length) return;
 
@@ -327,8 +334,12 @@
       node.hidden = i !== slideIndex;
     });
 
+    if (autoplayTrailer && slide.type === "trailer") {
+      playTrailer(slideNodes[slideIndex]);
+    }
+
     caption.textContent = slides.length > 1
-      ? (slideIndex + 1) + " / " + slides.length + (slide.type === "trailer" ? " — click to play" : "")
+      ? (slideIndex + 1) + " / " + slides.length + (slide.type === "trailer" && !autoplayTrailer ? " — click to play" : "")
       : (slide.alt || "");
     const many = slides.length > 1;
     prevBtn.hidden = !many;
@@ -345,7 +356,7 @@
     if (start !== "trailer" && gallery.trailer) slideIndex = 1;
     if (slideIndex >= slides.length) slideIndex = 0;
     mountSlides();
-    renderSlide();
+    renderSlide(start === "trailer");
     if (typeof dialog.showModal === "function") dialog.showModal();
   }
 

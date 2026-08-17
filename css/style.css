@@ -1082,6 +1082,9 @@ main {
   background: #000;
   cursor: pointer;
 }
+.yt-facade[hidden] {
+  display: none !important;
+}
 .yt-facade img {
   width: 100%;
   height: 100%;
