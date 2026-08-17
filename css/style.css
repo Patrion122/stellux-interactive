@@ -658,6 +658,28 @@ main {
   transform: scale(1.04);
 }
 
+.tool-card .card-media {
+  background: #05050c;
+}
+
+.tool-card .card-media-img {
+  object-fit: contain;
+}
+
+.tool-card:hover .card-media-img {
+  transform: none;
+}
+
+.card-badge-store {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+}
+
+.card-badge-itch {
+  background: rgba(250, 92, 124, 0.16);
+  color: #f08aa0;
+}
+
 .card-media-icon {
   position: absolute;
   left: 0.75rem;
