@@ -100,7 +100,7 @@ def save_webp(img: Image.Image, path: Path, *, quality: int = WEBP_QUALITY, loss
 
 def process_local_screenshots() -> None:
     for slug, folder in LOCAL_PROJECTS.items():
-        files = sorted(folder.glob("*.png"))
+        files = sorted(folder.glob("[0-9][0-9].png"))
         if not files:
             print(f"  skip {slug}: no local PNGs in {folder}")
             continue
