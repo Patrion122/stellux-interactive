@@ -29,7 +29,7 @@
     velocity: {
       title: "Velocity — Advanced FPS Movement",
       trailer: "zc6Zkf8_k6s",
-      trailerPoster: "assets/media/velocity/thumb-full.webp?v=1",
+      trailerPoster: "assets/media/velocity/thumb-full.webp?v=20260817a",
       images: [
         { src: "assets/media/velocity/01-full.webp", alt: "Velocity wallrunning and sliding" },
         { src: "assets/media/velocity/02-full.webp", alt: "Velocity FPS movement demo" },
@@ -38,7 +38,7 @@
     "ai-context-builder": {
       title: "AI Context Builder",
       trailer: "qbIV7_slErA",
-      trailerPoster: "assets/media/ai-context-builder/thumb-full.webp?v=1",
+      trailerPoster: "assets/media/ai-context-builder/thumb-full.webp?v=20260817a",
       images: [
         { src: "assets/media/ai-context-builder/01-full.webp?v=3", alt: "AI Context Builder — fully customizable export" },
         { src: "assets/media/ai-context-builder/02-full.webp?v=3", alt: "AI Context Builder — output control" },
@@ -49,7 +49,7 @@
     "project-doctor": {
       title: "Project Doctor Pro",
       trailer: "iEkdLeqDcug",
-      trailerPoster: "assets/media/project-doctor/thumb-full.webp?v=1",
+      trailerPoster: "assets/media/project-doctor/thumb-full.webp?v=20260817a",
       images: [
         { src: "assets/media/project-doctor/01-full.webp?v=3", alt: "Project Doctor Pro — batch rename" },
         { src: "assets/media/project-doctor/02-full.webp?v=3", alt: "Project Doctor Pro — organize with one click" },
