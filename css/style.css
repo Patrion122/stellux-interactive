@@ -763,6 +763,12 @@ main {
   border: 1px solid var(--border);
 }
 
+.card-badge-platform {
+  background: rgba(70, 110, 180, 0.22);
+  border-color: rgba(110, 155, 230, 0.28);
+  color: #9db8e8;
+}
+
 .project-card h3 {
   font-size: 1.2rem;
   font-weight: 600;
@@ -862,8 +868,8 @@ main {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.85rem 1.25rem;
-  margin-top: auto;
-  padding-top: 1rem;
+  margin-top: 1rem;
+  padding-top: 0;
 }
 
 .card-cta {
