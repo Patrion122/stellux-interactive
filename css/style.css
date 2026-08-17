@@ -687,6 +687,34 @@ main {
   backdrop-filter: blur(8px);
 }
 
+.card-media[data-start="trailer"]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 8px 28px var(--accent-glow);
+  pointer-events: none;
+}
+.card-media[data-start="trailer"]::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 0;
+  height: 0;
+  margin: -7px 0 0 -4px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 13px solid #0a0a12;
+  pointer-events: none;
+}
+
 .platform-badge {
   position: absolute;
   top: 0.75rem;

@@ -57,6 +57,12 @@ LOCAL_PROJECTS = {
     "project-doctor": ROOT / "tools" / "screenshots" / "project-doctor",
 }
 
+CARD_THUMBS = {
+    "ai-context-builder": ROOT / "tools" / "nahledaky" / "AI Context Builder Youtube cover v2.png",
+    "project-doctor": ROOT / "tools" / "nahledaky" / "nahldedak project doctor.png",
+    "velocity": ROOT / "tools" / "nahledaky" / "Vellocity image.png",
+}
+
 PROJECT_ICONS = [
     "ai-context-builder.png",
     "project-doctor.png",
@@ -113,6 +119,19 @@ def process_local_screenshots() -> None:
             save_webp(img, dest / f"{i:02d}-full.webp", lossless=True)
 
 
+def process_card_thumbs() -> None:
+    for slug, src in CARD_THUMBS.items():
+        if not src.exists():
+            print(f"  skip thumb {slug}: missing {src.name}")
+            continue
+        dest = MEDIA / slug
+        dest.mkdir(parents=True, exist_ok=True)
+        img = ImageOps.exif_transpose(Image.open(src)).convert("RGB")
+        print(f"  thumb {slug} {img.size}")
+        save_webp(cover(img, CARD_SIZE), dest / "thumb-card.webp", quality=90)
+        save_webp(cover(img, FULL_SIZE), dest / "thumb.webp", quality=90)
+
+
 def process_screenshots() -> None:
     for slug, urls in PROJECTS.items():
         dest = MEDIA / slug
@@ -123,6 +142,7 @@ def process_screenshots() -> None:
             save_webp(cover(img, CARD_SIZE), dest / f"{i:02d}-card.webp")
             save_webp(cover(img, FULL_SIZE), dest / f"{i:02d}-full.webp")
     process_local_screenshots()
+    process_card_thumbs()
 
 
 def make_logo_set() -> Image.Image:
