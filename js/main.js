@@ -215,7 +215,9 @@
   const nextBtn = dialog.querySelector(".lightbox-next");
   const closeBtn = dialog.querySelector(".lightbox-close");
   let slides = [];
+  let slideNodes = [];
   let slideIndex = 0;
+  let preloadCache = new Map();
 
   function buildSlides(gallery) {
     const list = [];
@@ -233,45 +235,97 @@
     return list;
   }
 
+  function preloadUrl(url) {
+    if (!url || preloadCache.has(url)) return;
+    const img = new Image();
+    img.decoding = "async";
+    img.src = url;
+    preloadCache.set(url, img);
+  }
+
+  function preloadSlides(list) {
+    list.forEach((slide) => {
+      if (slide.type === "trailer") preloadUrl(slide.poster);
+      if (slide.type === "image") preloadUrl(slide.src);
+    });
+  }
+
   function stopTrailer() {
-    const iframe = stage.querySelector("iframe");
-    if (iframe) iframe.remove();
+    slideNodes.forEach((node) => {
+      if (!node || node.dataset.type !== "trailer") return;
+      const iframe = node.querySelector("iframe");
+      if (iframe) iframe.remove();
+      const facade = node.querySelector(".yt-facade");
+      if (facade) facade.hidden = false;
+    });
+  }
+
+  function buildTrailerNode(slide) {
+    const wrap = document.createElement("div");
+    wrap.className = "lightbox-slide";
+    wrap.dataset.type = "trailer";
+    wrap.hidden = true;
+
+    const facade = document.createElement("button");
+    facade.type = "button";
+    facade.className = "yt-facade";
+    facade.setAttribute("aria-label", "Play trailer");
+
+    const poster = document.createElement("img");
+    poster.src = slide.poster;
+    poster.alt = slide.alt;
+    poster.decoding = "async";
+    poster.fetchPriority = "high";
+
+    const play = document.createElement("span");
+    play.className = "yt-play";
+    play.setAttribute("aria-hidden", "true");
+    play.innerHTML = "<span></span>";
+    facade.append(poster, play);
+
+    facade.addEventListener("click", () => {
+      facade.hidden = true;
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + slide.id + "?autoplay=1";
+      iframe.title = slide.alt;
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+      wrap.appendChild(iframe);
+    });
+
+    wrap.appendChild(facade);
+    return wrap;
+  }
+
+  function buildImageNode(slide) {
+    const img = document.createElement("img");
+    img.className = "lightbox-slide";
+    img.dataset.type = "image";
+    img.src = slide.src;
+    img.alt = slide.alt;
+    img.decoding = "async";
+    img.loading = "eager";
+    img.hidden = true;
+    return img;
+  }
+
+  function mountSlides() {
+    stopTrailer();
+    stage.replaceChildren();
+    slideNodes = slides.map((slide) =>
+      slide.type === "trailer" ? buildTrailerNode(slide) : buildImageNode(slide)
+    );
+    slideNodes.forEach((node) => stage.appendChild(node));
   }
 
   function renderSlide() {
     const slide = slides[slideIndex];
-    if (!slide) return;
-    stopTrailer();
-    stage.replaceChildren();
+    if (!slide || !slideNodes.length) return;
 
-    if (slide.type === "trailer") {
-      const facade = document.createElement("button");
-      facade.type = "button";
-      facade.className = "yt-facade";
-      facade.setAttribute("aria-label", "Play trailer");
-      const poster = document.createElement("img");
-      poster.src = slide.poster;
-      poster.alt = slide.alt;
-      const play = document.createElement("span");
-      play.className = "yt-play";
-      play.setAttribute("aria-hidden", "true");
-      play.innerHTML = "<span></span>";
-      facade.append(poster, play);
-      facade.addEventListener("click", () => {
-        const iframe = document.createElement("iframe");
-        iframe.src = "https://www.youtube-nocookie.com/embed/" + slide.id + "?autoplay=1";
-        iframe.title = slide.alt;
-        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-        iframe.allowFullscreen = true;
-        stage.replaceChildren(iframe);
-      });
-      stage.appendChild(facade);
-    } else {
-      const img = document.createElement("img");
-      img.src = slide.src;
-      img.alt = slide.alt;
-      stage.appendChild(img);
-    }
+    stopTrailer();
+    slideNodes.forEach((node, i) => {
+      node.hidden = i !== slideIndex;
+    });
 
     caption.textContent = slides.length > 1
       ? (slideIndex + 1) + " / " + slides.length + (slide.type === "trailer" ? " — click to play" : "")
@@ -285,10 +339,12 @@
     const gallery = GALLERIES[id];
     if (!gallery) return;
     slides = buildSlides(gallery);
+    preloadSlides(slides);
     titleEl.textContent = gallery.title;
     slideIndex = 0;
     if (start !== "trailer" && gallery.trailer) slideIndex = 1;
     if (slideIndex >= slides.length) slideIndex = 0;
+    mountSlides();
     renderSlide();
     if (typeof dialog.showModal === "function") dialog.showModal();
   }
