@@ -29,6 +29,7 @@
     velocity: {
       title: "Velocity — Advanced FPS Movement",
       trailer: "zc6Zkf8_k6s",
+      trailerPoster: "assets/media/velocity/thumb-full.webp?v=1",
       images: [
         { src: "assets/media/velocity/01-full.webp", alt: "Velocity wallrunning and sliding" },
         { src: "assets/media/velocity/02-full.webp", alt: "Velocity FPS movement demo" },
@@ -37,6 +38,7 @@
     "ai-context-builder": {
       title: "AI Context Builder",
       trailer: "qbIV7_slErA",
+      trailerPoster: "assets/media/ai-context-builder/thumb-full.webp?v=1",
       images: [
         { src: "assets/media/ai-context-builder/01-full.webp?v=3", alt: "AI Context Builder — fully customizable export" },
         { src: "assets/media/ai-context-builder/02-full.webp?v=3", alt: "AI Context Builder — output control" },
@@ -47,6 +49,7 @@
     "project-doctor": {
       title: "Project Doctor Pro",
       trailer: "iEkdLeqDcug",
+      trailerPoster: "assets/media/project-doctor/thumb-full.webp?v=1",
       images: [
         { src: "assets/media/project-doctor/01-full.webp?v=3", alt: "Project Doctor Pro — batch rename" },
         { src: "assets/media/project-doctor/02-full.webp?v=3", alt: "Project Doctor Pro — organize with one click" },
@@ -220,7 +223,7 @@
       list.push({
         type: "trailer",
         id: gallery.trailer,
-        poster: gallery.images[0] ? gallery.images[0].src : "",
+        poster: gallery.trailerPoster || (gallery.images[0] ? gallery.images[0].src : ""),
         alt: gallery.title + " trailer",
       });
     }
@@ -247,14 +250,9 @@
       facade.className = "yt-facade";
       facade.setAttribute("aria-label", "Play trailer");
       const poster = document.createElement("img");
-      poster.src = "https://i.ytimg.com/vi/" + slide.id + "/hqdefault.jpg";
+      poster.src = slide.poster;
       poster.alt = slide.alt;
-      const play = document.createElement("span");
-      play.className = "yt-play";
-      const playLabel = document.createElement("span");
-      playLabel.textContent = "Play";
-      play.appendChild(playLabel);
-      facade.append(poster, play);
+      facade.append(poster);
       facade.addEventListener("click", () => {
         const iframe = document.createElement("iframe");
         iframe.src = "https://www.youtube-nocookie.com/embed/" + slide.id + "?autoplay=1";
@@ -272,7 +270,7 @@
     }
 
     caption.textContent = slides.length > 1
-      ? (slideIndex + 1) + " / " + slides.length
+      ? (slideIndex + 1) + " / " + slides.length + (slide.type === "trailer" ? " — click to play" : "")
       : (slide.alt || "");
     const many = slides.length > 1;
     prevBtn.hidden = !many;

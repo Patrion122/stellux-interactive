@@ -130,6 +130,7 @@ def process_card_thumbs() -> None:
         print(f"  thumb {slug} {img.size}")
         save_webp(cover(img, CARD_SIZE), dest / "thumb-card.webp", quality=90)
         save_webp(cover(img, FULL_SIZE), dest / "thumb.webp", quality=90)
+        save_webp(cover(img, (1920, 1080)), dest / "thumb-full.webp", quality=92)
 
 
 def process_screenshots() -> None:
