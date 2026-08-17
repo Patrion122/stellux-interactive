@@ -660,6 +660,7 @@ main {
 
 .tool-card .card-media {
   background: #05050c;
+  border-radius: 0;
 }
 
 .tool-card .card-media-img {
@@ -670,14 +671,29 @@ main {
   transform: none;
 }
 
-.card-badge-store {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-muted);
+.card-rail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
 }
 
-.card-badge-itch {
-  background: rgba(250, 92, 124, 0.16);
-  color: #f08aa0;
+.card-rail .platform-badge,
+.card-rail .card-media-count {
+  position: static;
+  top: auto;
+  right: auto;
+  left: auto;
+}
+
+.card-rail .card-media-count {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  backdrop-filter: none;
 }
 
 .card-media-icon {
