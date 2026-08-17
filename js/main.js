@@ -252,7 +252,11 @@
       const poster = document.createElement("img");
       poster.src = slide.poster;
       poster.alt = slide.alt;
-      facade.append(poster);
+      const play = document.createElement("span");
+      play.className = "yt-play";
+      play.setAttribute("aria-hidden", "true");
+      play.innerHTML = "<span></span>";
+      facade.append(poster, play);
       facade.addEventListener("click", () => {
         const iframe = document.createElement("iframe");
         iframe.src = "https://www.youtube-nocookie.com/embed/" + slide.id + "?autoplay=1";
