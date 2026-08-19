@@ -193,18 +193,26 @@
 
   // ── Scroll reveal ──
   const revealEls = document.querySelectorAll("[data-reveal]");
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add("revealed"), i * 80);
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-  );
-  revealEls.forEach((el) => observer.observe(el));
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add("revealed"), i * 80);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px 0px 0px" }
+    );
+    revealEls.forEach((el) => observer.observe(el));
+    // Fallback: reveal anything still hidden after 2.5 s (in-app browsers, etc.)
+    setTimeout(() => {
+      revealEls.forEach((el) => el.classList.add("revealed"));
+    }, 2500);
+  } else {
+    revealEls.forEach((el) => el.classList.add("revealed"));
+  }
 
   // ── Lightbox ──
   const dialog = document.getElementById("lightbox");

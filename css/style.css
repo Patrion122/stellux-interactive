@@ -898,13 +898,13 @@ main {
   border: 1px solid var(--border);
   overflow: hidden;
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }
 
 .contact-card.revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .contact-glow {
