@@ -596,6 +596,11 @@ main {
   color: #9ecbea;
 }
 
+.building-steam-soon {
+  white-space: nowrap;
+  justify-self: end;
+}
+
 .building-copy .platform-badge {
   position: static;
 }
