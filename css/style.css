@@ -837,6 +837,12 @@ main {
   font-weight: 600;
 }
 
+.badge-coop {
+  background: rgba(70, 110, 180, 0.22);
+  border: 1px solid rgba(110, 155, 230, 0.28);
+  color: #9db8e8;
+}
+
 .card-body {
   padding: 1.5rem 1.75rem 1.75rem;
   flex: 1;
