@@ -191,6 +191,38 @@
     if (!nav.contains(event.target) && !toggle.contains(event.target)) closeMenu();
   });
 
+  // ── Active nav section ──
+  const navTargets = Array.from(nav.querySelectorAll('a[href^="#"]'))
+    .map((link) => {
+      const target = document.querySelector(link.getAttribute("href"));
+      const section = target ? target.closest("section") || target : null;
+      return section ? { link, section } : null;
+    })
+    .filter(Boolean);
+  let navTicking = false;
+
+  function updateActiveNav() {
+    navTicking = false;
+    const probe = window.innerHeight * 0.35;
+    let active = null;
+    navTargets.forEach((item) => {
+      if (item.section.getBoundingClientRect().top <= probe) active = item;
+    });
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+    if (atBottom && navTargets.length) active = navTargets[navTargets.length - 1];
+    navTargets.forEach((item) => {
+      if (item === active) item.link.setAttribute("aria-current", "true");
+      else item.link.removeAttribute("aria-current");
+    });
+  }
+
+  window.addEventListener("scroll", () => {
+    if (navTicking) return;
+    navTicking = true;
+    requestAnimationFrame(updateActiveNav);
+  }, { passive: true });
+  updateActiveNav();
+
   // ── Scroll reveal ──
   const revealEls = document.querySelectorAll("[data-reveal]");
   if ("IntersectionObserver" in window) {
@@ -386,6 +418,22 @@
   dialog.addEventListener("click", (event) => {
     if (event.target === dialog) dialog.close();
   });
+  let touchStartX = 0;
+  let touchStartY = 0;
+  stage.addEventListener("touchstart", (event) => {
+    if (event.touches.length !== 1) return;
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+  }, { passive: true });
+  stage.addEventListener("touchend", (event) => {
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+    const dx = touch.clientX - touchStartX;
+    const dy = touch.clientY - touchStartY;
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    step(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
   dialog.addEventListener("close", stopTrailer);
   dialog.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") step(-1);

@@ -1,3 +1,20 @@
+/* ── Fonts ── */
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("../assets/fonts/outfit-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url("../assets/fonts/jetbrains-mono-latin.woff2") format("woff2");
+}
+
 /* ── Design tokens ── */
 :root {
   --bg-deep: #06060f;
@@ -161,6 +178,50 @@ img { max-width: 100%; display: block; }
 }
 
 .nav a:hover { color: var(--text); }
+
+.nav a:not(.nav-cta) {
+  position: relative;
+}
+
+.nav a:not(.nav-cta)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.4rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.3s var(--ease);
+}
+
+.nav a[aria-current="true"]:not(.nav-cta) {
+  color: var(--text);
+}
+
+.nav a[aria-current="true"]:not(.nav-cta)::after {
+  transform: scaleX(1);
+}
+
+.nav-cta[aria-current="true"] {
+  background: rgba(240, 180, 41, 0.25);
+}
+
+.nav-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem;
+}
+
+.nav-icon:hover {
+  color: #ff4e45 !important;
+}
+
+.nav-icon-label {
+  display: none;
+}
 
 .nav-cta {
   padding: 0.45rem 1.1rem;
@@ -347,17 +408,98 @@ main {
   animation: fade-up 0.7s var(--ease) 0.4s forwards;
 }
 
-.hero-stats {
+.hero-products {
   display: grid;
-  grid-template-columns: repeat(3, 10.75rem);
-  column-gap: clamp(1rem, 2.5vw, 1.75rem);
-  width: fit-content;
-  max-width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 13.5rem));
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
   margin-top: clamp(2rem, 5vw, 3.25rem);
   padding-top: 2rem;
   border-top: 1px solid var(--border);
   opacity: 0;
   animation: fade-up 0.7s var(--ease) 0.7s forwards;
+}
+
+.hero-product {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 0.4rem 0.9rem 0.4rem 0.4rem;
+  border-radius: 14px;
+  background: rgba(16, 16, 36, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+  transition: transform 0.25s var(--ease), border-color 0.25s, background 0.25s;
+}
+
+.hero-product:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 210, 120, 0.3);
+  background: rgba(22, 22, 46, 0.9);
+}
+
+.hero-product img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.hero-product-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.hero-product-text strong {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hero-product-text small {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.hero-product-next {
+  border-color: rgba(240, 180, 41, 0.28);
+  background: rgba(240, 180, 41, 0.07);
+}
+
+.hero-product-next small {
+  color: var(--accent);
+}
+
+.hero-product-dot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(240, 180, 41, 0.12);
+}
+
+.hero-product-dot::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent-glow);
+  animation: dev-pulse 2.4s ease-out infinite;
 }
 
 .eyebrow {
@@ -416,50 +558,6 @@ main {
 .btn-sm {
   font-size: 0.85rem;
   padding: 0.5rem 1rem;
-}
-
-.stat-value {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  text-align: center;
-  width: 100%;
-  transition: color 0.2s;
-}
-
-.hero-stats .stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.35rem;
-  text-align: center;
-  min-width: 0;
-  border-radius: 12px;
-  padding: 0.35rem 0.25rem;
-}
-
-.hero-stats a.stat:hover .stat-value {
-  color: var(--accent);
-}
-
-.stat-label {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: var(--text-dim);
-  text-align: center;
-  width: 100%;
-  line-height: 1.35;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.stat-flagship .stat-value {
-  color: var(--accent);
 }
 
 .hero-scroll {
@@ -1014,9 +1112,18 @@ main {
   border-radius: 4px;
 }
 
-.project-grid-games,
 .project-grid-tools {
   grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+}
+
+.project-grid-games {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .project-grid-games {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* ── Contact ── */
@@ -1309,6 +1416,12 @@ main {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes dev-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(240, 180, 41, 0.55); }
+  70% { box-shadow: 0 0 0 9px rgba(240, 180, 41, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(240, 180, 41, 0); }
+}
+
 @keyframes scroll-pulse {
   0%, 100% { transform: translateY(0); opacity: 0.55; }
   50% { transform: translateY(5px); opacity: 1; }
@@ -1350,20 +1463,38 @@ main {
 
   .nav a:last-child { border-bottom: none; }
 
+  .nav a:not(.nav-cta)::after { display: none; }
+
+  .nav-icon {
+    padding: 0.85rem 0;
+  }
+
+  .nav-icon-label {
+    display: inline;
+  }
+
+  .nav a[aria-current="true"]:not(.nav-cta) {
+    color: var(--accent);
+  }
+
   .about-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
-  .hero-stats {
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 1rem;
-    width: 100%;
+  .hero-products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
   }
 
-  .stat-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.05em;
+  .hero-product {
+    padding-right: 0.6rem;
+  }
+
+  .hero-product-text strong {
+    font-size: 0.8rem;
+    white-space: normal;
+    overflow: visible;
   }
 
   .building-strip {

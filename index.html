@@ -22,10 +22,8 @@
 
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20260919a" />
+  <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/style.css?v=20260922c" />
 
   <script type="application/ld+json">
   {
@@ -40,7 +38,8 @@
         "logo": "https://stelluxinteractive.com/assets/og.png",
         "sameAs": [
           "https://stelluxinteractive.itch.io",
-          "https://assetstore.unity.com/publishers/139358"
+          "https://assetstore.unity.com/publishers/139358",
+          "https://www.youtube.com/@stelluxinteractive"
         ]
       },
       {
@@ -122,6 +121,12 @@
       <a href="#about">About</a>
       <a href="#games">Games</a>
       <a href="#tools">Tools</a>
+      <a href="https://www.youtube.com/@stelluxinteractive" class="nav-icon" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.7 15.1V8.9l5.8 3.1-5.8 3.1Z"/>
+        </svg>
+        <span class="nav-icon-label">YouTube</span>
+      </a>
       <a href="#contact" class="nav-cta">Contact</a>
     </nav>
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
@@ -144,20 +149,44 @@
               <a href="#games" class="btn btn-primary">View Games</a>
               <a href="#tools" class="btn btn-ghost-accent">View Tools</a>
             </div>
-            <div class="hero-stats">
-              <a href="#games" class="stat">
-                <span class="stat-value">2</span>
-                <span class="stat-label">Playable Games</span>
-              </a>
-              <a href="#next-game" class="stat stat-flagship">
-                <span class="stat-value">1</span>
-                <span class="stat-label">In Development</span>
-              </a>
-              <a href="#tools" class="stat">
-                <span class="stat-value">3</span>
-                <span class="stat-label">Assets &amp; Tools</span>
-              </a>
-            </div>
+            <ul class="hero-products" aria-label="Projects">
+              <li>
+                <a class="hero-product" href="#trisector">
+                  <img src="assets/icons/trisector-96.webp" alt="" width="40" height="40" decoding="async" />
+                  <span class="hero-product-text"><strong>Trisector</strong><small>Game</small></span>
+                </a>
+              </li>
+              <li>
+                <a class="hero-product" href="#swiftkill">
+                  <img src="assets/icons/swiftkill-96.webp" alt="" width="40" height="40" decoding="async" />
+                  <span class="hero-product-text"><strong>SWIFTKILL</strong><small>Prototype</small></span>
+                </a>
+              </li>
+              <li>
+                <a class="hero-product" href="#ai-context-builder">
+                  <img src="assets/icons/ai-context-builder-96.webp" alt="" width="40" height="40" decoding="async" />
+                  <span class="hero-product-text"><strong>AI Context Builder</strong><small>Editor tool</small></span>
+                </a>
+              </li>
+              <li>
+                <a class="hero-product" href="#project-doctor">
+                  <img src="assets/icons/project-doctor-96.webp?v=2" alt="" width="40" height="40" decoding="async" />
+                  <span class="hero-product-text"><strong>Project Doctor Pro</strong><small>Editor tool</small></span>
+                </a>
+              </li>
+              <li>
+                <a class="hero-product" href="#velocity">
+                  <img src="assets/icons/velocity-96.webp" alt="" width="40" height="40" decoding="async" />
+                  <span class="hero-product-text"><strong>Velocity</strong><small>FPS movement</small></span>
+                </a>
+              </li>
+              <li>
+                <a class="hero-product hero-product-next" href="#next-game">
+                  <span class="hero-product-dot" aria-hidden="true"></span>
+                  <span class="hero-product-text"><strong>Co-op game</strong><small>In development</small></span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -249,7 +278,7 @@
       </aside>
 
       <div class="project-grid project-grid-games">
-        <article class="project-card" data-reveal>
+        <article class="project-card" id="trisector" data-reveal>
           <button class="card-media" type="button" data-gallery="trisector" aria-label="View screenshots: Trisector">
             <img src="assets/media/trisector/02-card.webp" alt="" class="card-media-img" width="800" height="450" loading="lazy" decoding="async" />
             <img src="assets/icons/trisector-96.webp" alt="" class="card-media-icon" width="48" height="48" loading="lazy" decoding="async" />
@@ -277,7 +306,7 @@
           </div>
         </article>
 
-        <article class="project-card" data-reveal>
+        <article class="project-card" id="swiftkill" data-reveal>
           <button class="card-media" type="button" data-gallery="swiftkill" aria-label="View screenshots: SWIFTKILL">
             <img src="assets/media/swiftkill/01-card.webp" alt="" class="card-media-img" width="800" height="450" loading="lazy" decoding="async" />
             <img src="assets/icons/swiftkill-96.webp" alt="" class="card-media-icon" width="48" height="48" loading="lazy" decoding="async" />
@@ -314,7 +343,7 @@
         <p class="section-desc">Editor utilities and drop-in systems — on the Asset Store and itch.io.</p>
       </div>
       <div class="project-grid project-grid-tools">
-        <article class="project-card tool-card" data-reveal>
+        <article class="project-card tool-card" id="ai-context-builder" data-reveal>
           <button class="card-media" type="button" data-gallery="ai-context-builder" data-start="trailer" aria-label="Watch trailer: AI Context Builder">
             <img src="assets/media/ai-context-builder/thumb-card.webp?v=1" srcset="assets/media/ai-context-builder/thumb.webp?v=1 1600w" sizes="(min-width: 900px) 350px, 100vw" alt="" class="card-media-img" width="800" height="450" loading="lazy" decoding="async" />
             <img src="assets/icons/ai-context-builder-96.webp" alt="" class="card-media-icon" width="48" height="48" loading="lazy" decoding="async" />
@@ -329,7 +358,7 @@
               Export structured, token-optimized Unity project blueprints for
               ChatGPT, Claude, and Gemini — faster debugging and smarter codegen.
             </p>
-            <p class="card-meta">$19.99 · Unity 2021+</p>
+            <p class="card-meta">$19.99 · Unity 2022.3+ · Built-in, URP, HDRP</p>
             <ul class="card-tags">
               <li>AI Workflow</li>
               <li>Documentation</li>
@@ -342,7 +371,7 @@
           </div>
         </article>
 
-        <article class="project-card tool-card" data-reveal>
+        <article class="project-card tool-card" id="project-doctor" data-reveal>
           <button class="card-media" type="button" data-gallery="project-doctor" data-start="trailer" aria-label="Watch trailer: Project Doctor Pro">
             <img src="assets/media/project-doctor/thumb-card.webp?v=1" srcset="assets/media/project-doctor/thumb.webp?v=1 1600w" sizes="(min-width: 900px) 350px, 100vw" alt="" class="card-media-img" width="800" height="450" loading="lazy" decoding="async" />
             <img src="assets/icons/project-doctor-96.webp?v=2" alt="" class="card-media-icon" width="48" height="48" loading="lazy" decoding="async" />
@@ -357,7 +386,7 @@
               Fix broken references, batch rename, and auto-organize your project in
               seconds. One-click diagnostics for messy Unity projects.
             </p>
-            <p class="card-meta">$15.00 · Unity 2021+</p>
+            <p class="card-meta">$15.00 · Unity 2022.3+ · Built-in, URP, HDRP</p>
             <ul class="card-tags">
               <li>Cleanup</li>
               <li>References</li>
@@ -370,7 +399,7 @@
           </div>
         </article>
 
-        <article class="project-card tool-card" data-reveal>
+        <article class="project-card tool-card" id="velocity" data-reveal>
           <button class="card-media" type="button" data-gallery="velocity" data-start="trailer" aria-label="Watch trailer: Velocity">
             <img src="assets/media/velocity/thumb-card.webp?v=1" srcset="assets/media/velocity/thumb.webp?v=1 1600w" sizes="(min-width: 900px) 350px, 100vw" alt="" class="card-media-img" width="800" height="450" loading="lazy" decoding="async" />
             <img src="assets/icons/velocity-96.webp" alt="" class="card-media-icon" width="48" height="48" loading="lazy" decoding="async" />
@@ -385,7 +414,7 @@
               A drop-in Unity FPS movement framework — wallrunning, sliding,
               dashing, and grappling. Import, tune, and ship.
             </p>
-            <p class="card-meta">Pay what you want · Unity 2021+</p>
+            <p class="card-meta">Pay what you want · Unity 2021+ · URP</p>
             <ul class="card-tags">
               <li>Unity Package</li>
               <li>Modular</li>
@@ -416,6 +445,8 @@
           <a href="https://stelluxinteractive.itch.io" target="_blank" rel="noopener noreferrer">itch.io</a>
           <span aria-hidden="true">·</span>
           <a href="https://assetstore.unity.com/publishers/139358" target="_blank" rel="noopener noreferrer">Unity Asset Store</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://www.youtube.com/@stelluxinteractive" target="_blank" rel="noopener noreferrer">YouTube</a>
         </div>
       </div>
     </section>
@@ -432,6 +463,7 @@
         <span class="footer-sep" aria-hidden="true">·</span>
         <a href="https://stelluxinteractive.itch.io" target="_blank" rel="noopener noreferrer">itch.io</a>
         <a href="https://assetstore.unity.com/publishers/139358" target="_blank" rel="noopener noreferrer">Asset Store</a>
+        <a href="https://www.youtube.com/@stelluxinteractive" target="_blank" rel="noopener noreferrer">YouTube</a>
         <a href="mailto:stelluxinteractive@gmail.com">Email</a>
       </nav>
     </div>
@@ -449,7 +481,7 @@
     </div>
   </dialog>
 
-  <script src="js/main.js?v=20260820c"></script>
+  <script src="js/main.js?v=20260922a"></script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "831b83116ac34b839e330c0381dafc59"}'></script>
 </body>
 </html>
