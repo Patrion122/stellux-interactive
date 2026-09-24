@@ -1484,21 +1484,21 @@ main {
 
   .hero {
     min-height: auto;
-    padding: calc(var(--header-h) + 1.15rem) 1.15rem 3.75rem;
+    padding: calc(var(--header-h) + 1.35rem) 1.15rem 0.25rem;
     justify-content: flex-start;
   }
 
   .hero h1 {
-    font-size: clamp(2.05rem, 8.5vw, 2.55rem);
-    margin-bottom: 0.75rem;
-  }
-
-  .eyebrow {
+    font-size: clamp(2.05rem, 8.4vw, 2.5rem);
     margin-bottom: 0.7rem;
   }
 
+  .eyebrow {
+    margin-bottom: 0.65rem;
+  }
+
   .hero-lead {
-    margin-bottom: 1.1rem;
+    margin-bottom: 1rem;
     font-size: 0.98rem;
   }
 
@@ -1506,69 +1506,59 @@ main {
     flex-direction: row;
     justify-content: center;
     flex-wrap: nowrap;
-    width: 100%;
-    gap: 0.5rem;
+    width: auto;
+    gap: 0.55rem;
   }
 
   .hero-actions .btn {
     width: auto;
-    flex: 0 1 auto;
-    padding: 0.5rem 0.95rem;
-    font-size: 0.84rem;
+    padding: 0.55rem 1.05rem;
+    font-size: 0.88rem;
   }
 
   .hero-products {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.5rem;
-    width: calc(100% + 2.3rem);
-    margin-left: -1.15rem;
-    margin-right: -1.15rem;
-    margin-top: 1.15rem;
-    padding: 0.95rem 1.15rem 0;
-    border-top: 1px solid var(--border);
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  .hero-products::-webkit-scrollbar {
-    display: none;
-  }
-
-  .hero-products > li {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
+    width: 100%;
+    margin: 1.1rem 0 0;
+    padding: 1rem 0 0;
+    overflow: visible;
   }
 
   .hero-product {
-    min-width: 9.75rem;
-    max-width: 11.5rem;
-    padding: 0.35rem 0.65rem 0.35rem 0.35rem;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    padding: 0.45rem 0.55rem 0.45rem 0.4rem;
   }
 
   .hero-product img,
   .hero-product-dot {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
   }
 
   .hero-product-text strong {
     font-size: 0.78rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    line-height: 1.15;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
   }
 
   .hero-product-text small {
+    margin-top: 0.15rem;
     font-size: 0.58rem;
   }
 
   .hero-scroll {
     display: none;
+  }
+
+  .section {
+    padding-top: 1.6rem;
+    padding-bottom: 2rem;
   }
 
   .building-strip {
