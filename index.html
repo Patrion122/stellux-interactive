@@ -23,7 +23,7 @@
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=20260924e" />
+  <link rel="stylesheet" href="css/style.css?v=20261001n" />
 
   <script type="application/ld+json">
   {
@@ -47,6 +47,19 @@
         "name": "Stellux Interactive",
         "url": "https://stelluxinteractive.com/",
         "publisher": { "@id": "https://stelluxinteractive.com/#studio" }
+      },
+      {
+        "@type": "VideoGame",
+        "name": "Left! Left! LEFT!",
+        "url": "https://stelluxinteractive.com/#next-game",
+        "author": { "@id": "https://stelluxinteractive.com/#studio" },
+        "gamePlatform": "PC",
+        "genre": "Co-op Rally",
+        "description": "Two-player co-op rally panic. Wrong turn. Every time.",
+        "sameAs": [
+          "https://www.tiktok.com/@leftleftleftgame",
+          "https://www.instagram.com/leftleftleftgame/"
+        ]
       },
       {
         "@type": "VideoGame",
@@ -205,8 +218,8 @@
         <div class="about-text">
           <p>
             <strong>Stellux Interactive</strong> is a Unity game studio — currently building
-            an asymmetric co-op rally game for PC, alongside released arcade titles and
-            production-ready tools for other developers.
+            <em>Left! Left! LEFT!</em>, a two-player co-op rally for PC, alongside released
+            arcade titles and production-ready tools for other developers.
           </p>
           <p>
             The same standard across every project: intentional design and polish that
@@ -235,13 +248,42 @@
         <p class="section-desc">Arcade and combat titles you can download on itch.io.</p>
       </div>
 
-      <aside class="building-strip" id="next-game" data-reveal>
-        <div class="building-copy">
-          <span class="platform-badge badge-coop">Co-op Rally</span>
-          <h3>Next game</h3>
-          <p>Two-player asymmetric co-op rally — one drives, one navigates through the chaos. Early playable build in progress.</p>
-        </div>
-        <div class="building-aside">
+      <aside class="building-strip building-strip-featured" id="next-game" data-reveal>
+        <button class="building-banner" type="button" data-gallery="left-left-left" aria-label="View screenshots: Left! Left! LEFT!">
+          <img src="assets/media/left-left-left/banner.webp?v=20261001f" alt="" width="2080" height="640" />
+        </button>
+        <div class="building-panel">
+          <div class="building-head">
+            <img class="building-icon" src="assets/icons/left-left-left-96.webp" alt="" width="48" height="48" />
+            <div class="building-head-copy">
+              <span class="platform-badge badge-coop">Co-op Rally</span>
+              <h3>Left! Left! LEFT!</h3>
+              <p class="building-tagline">Wrong turn. Every time.</p>
+            </div>
+          </div>
+          <p class="building-lead">Two-player co-op rally panic — one drives, one calls the turns. Early playable build in progress.</p>
+          <div class="building-actions">
+            <div class="building-socials">
+              <a class="building-social" href="https://www.instagram.com/leftleftleftgame/reels/" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5zm8 1.8H8A3.2 3.2 0 0 0 4.8 8v8A3.2 3.2 0 0 0 8 19.2h8a3.2 3.2 0 0 0 3.2-3.2V8A3.2 3.2 0 0 0 16 4.8zM12 8.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 1.7A2.1 2.1 0 1 0 14.1 12 2.1 2.1 0 0 0 12 9.9zm4.35-3.15a1.05 1.05 0 1 1-1.05 1.05 1.05 1.05 0 0 1 1.05-1.05z"/></svg>
+                Instagram
+              </a>
+              <a class="building-social" href="https://www.tiktok.com/@leftleftleftgame" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14.5 3c.4 2.4 1.7 4.1 4 4.6v2.5c-1.4 0-2.7-.4-4-1.2v6.4c0 3.4-2.6 6.2-6.1 6.2S2.2 18.7 2.2 15.3c0-3.3 2.5-6 5.8-6.2v2.6c-1.6.2-2.8 1.6-2.8 3.3 0 1.8 1.5 3.3 3.3 3.3s3.2-1.5 3.2-3.4V3h2.8z"/></svg>
+                TikTok
+              </a>
+              <button class="building-social" type="button" data-gallery="left-left-left">Screenshots</button>
+            </div>
+            <span class="building-steam-soon">
+              <svg class="building-steam-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="8.2" cy="14.8" r="2.2" fill="currentColor"/>
+                <circle cx="15.4" cy="9.2" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M9.6 13.6 14 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+              Steam page soon
+            </span>
+          </div>
           <div class="building-milestone" aria-label="Development progress: Playable stage, 50 percent">
             <div class="building-milestone-head">
               <div class="building-milestone-title">
@@ -265,15 +307,6 @@
               <span>Release</span>
             </div>
           </div>
-          <span class="building-steam-soon">
-            <svg class="building-steam-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/>
-              <circle cx="8.2" cy="14.8" r="2.2" fill="currentColor"/>
-              <circle cx="15.4" cy="9.2" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
-              <path d="M9.6 13.6 14 10.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-            Steam page soon
-          </span>
         </div>
       </aside>
 
@@ -481,7 +514,7 @@
     </div>
   </dialog>
 
-  <script src="js/main.js?v=20260922a"></script>
+  <script src="js/main.js?v=20261001a"></script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "831b83116ac34b839e330c0381dafc59"}'></script>
 </body>
 </html>

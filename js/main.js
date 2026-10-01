@@ -2,6 +2,16 @@
   "use strict";
 
   const GALLERIES = {
+    "left-left-left": {
+      title: "Left! Left! LEFT!",
+      images: [
+        { src: "assets/media/left-left-left/01-full.webp", alt: "Driver view with a route note on the dash" },
+        { src: "assets/media/left-left-left/02-full.webp", alt: "First-person drive down a forest road" },
+        { src: "assets/media/left-left-left/03-full.webp", alt: "The car clips a dirt bank" },
+        { src: "assets/media/left-left-left/04-full.webp", alt: "High-speed run through the trees" },
+        { src: "assets/media/left-left-left/05-full.webp", alt: "Sliding toward a dirt wall" },
+      ],
+    },
     trisector: {
       title: "Trisector",
       trailer: "iSI3nxN5IPo",
