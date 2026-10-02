@@ -4,6 +4,8 @@
   const GALLERIES = {
     "left-left-left": {
       title: "Left! Left! LEFT!",
+      trailer: "fmeGiWyVaEY",
+      trailerPoster: "assets/media/left-left-left/banner.webp?v=20261001f",
       images: [
         { src: "assets/media/left-left-left/01-full.webp", alt: "Driver view with a route note on the dash" },
         { src: "assets/media/left-left-left/02-full.webp", alt: "First-person drive down a forest road" },
