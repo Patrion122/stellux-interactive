@@ -215,8 +215,12 @@ img { max-width: 100%; display: block; }
   padding: 0.25rem;
 }
 
-.nav-icon:hover {
+.nav-icon-yt:hover {
   color: #ff4e45 !important;
+}
+
+.nav-icon-ig:hover {
+  color: #e1306c !important;
 }
 
 .nav-icon-label {
@@ -852,6 +856,18 @@ main {
   border-color: var(--border-hover);
   background: rgba(255, 255, 255, 0.04);
   color: var(--accent);
+}
+
+.building-social-support {
+  border-color: rgba(255, 94, 120, 0.42);
+  background: rgba(255, 94, 120, 0.12);
+  color: #ffb3c0;
+}
+
+.building-social-support:hover {
+  border-color: rgba(255, 140, 160, 0.75);
+  background: rgba(255, 94, 120, 0.22);
+  color: #ffd0d8;
 }
 
 .building-aside {
