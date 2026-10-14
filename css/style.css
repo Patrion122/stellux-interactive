@@ -528,6 +528,7 @@ main {
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), #e09520);
   color: #0a0a12;
+  border: 1px solid transparent;
   box-shadow: 0 4px 24px var(--accent-glow);
 }
 
@@ -1698,29 +1699,38 @@ main {
   }
 
   .hero h1 {
-    font-size: clamp(2.2rem, 9vw, 2.7rem);
-    margin-bottom: 1rem;
+    font-size: clamp(2.05rem, 8.4vw, 2.55rem);
+    margin-bottom: 0.85rem;
   }
 
   .eyebrow {
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.16em;
   }
 
   .hero-lead {
-    margin-bottom: 1.5rem;
-    font-size: 1.02rem;
+    max-width: 18.5rem;
+    margin-bottom: 1.35rem;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .hero-lead-tail {
+    display: block;
   }
 
   .hero-actions {
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: nowrap;
-    gap: 0.6rem;
+    flex-direction: column;
+    align-items: stretch;
+    width: min(100%, 16.5rem);
+    gap: 0.7rem;
   }
 
   .hero-actions .btn {
-    padding: 0.6rem 1.15rem;
-    font-size: 0.9rem;
+    min-width: 0;
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    font-size: 1rem;
   }
 
   .hero-scroll {
