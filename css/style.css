@@ -1699,7 +1699,7 @@ main {
   }
 
   .hero h1 {
-    font-size: clamp(2.05rem, 8.4vw, 2.55rem);
+    font-size: clamp(2.3rem, 9.4vw, 2.85rem);
     margin-bottom: 0.85rem;
   }
 
@@ -1723,10 +1723,10 @@ main {
   }
 
   .hero-actions .btn {
-    min-width: 11.5rem;
-    width: 11.5rem;
-    padding: 0.72rem 1.2rem;
-    font-size: 0.95rem;
+    min-width: 9.2rem;
+    width: 9.2rem;
+    padding: 0.58rem 0.95rem;
+    font-size: 0.85rem;
   }
 
   .hero-scroll {
