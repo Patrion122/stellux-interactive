@@ -151,7 +151,8 @@
     let touchStartY = 0;
     const SNAP_SLACK = 16;
     const fastSnap = window.matchMedia("(hover: none), (pointer: coarse), (max-width: 900px)").matches;
-    const COOLDOWN_MS = fastSnap ? 280 : 450;
+    const COOLDOWN_MS = fastSnap ? 220 : 450;
+    const MOBILE_SNAP_MS = 320;
 
     function aboutScrollTop() {
       const pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
@@ -164,19 +165,39 @@
       cooldownUntil = performance.now() + COOLDOWN_MS;
     }
 
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
     function snapTo(targetY) {
       if (snapLock) return;
       snapLock = true;
       snapTarget = targetY;
 
-      // Mobile: jump immediately — CSS smooth scroll feels too slow on touch.
+      // Mobile: short custom ease — CSS smooth is too slow, instant feels like a teleport.
       if (fastSnap) {
         const root = document.documentElement;
         const prevBehavior = root.style.scrollBehavior;
         root.style.scrollBehavior = "auto";
-        window.scrollTo(0, targetY);
-        root.style.scrollBehavior = prevBehavior;
-        finishSnap(targetY);
+        const startY = window.scrollY;
+        const distance = targetY - startY;
+        const started = performance.now();
+
+        function tick(now) {
+          if (!snapLock) {
+            root.style.scrollBehavior = prevBehavior;
+            return;
+          }
+          const t = Math.min(1, (now - started) / MOBILE_SNAP_MS);
+          window.scrollTo(0, Math.round(startY + distance * easeOutCubic(t)));
+          if (t < 1) {
+            requestAnimationFrame(tick);
+            return;
+          }
+          root.style.scrollBehavior = prevBehavior;
+          finishSnap(targetY);
+        }
+        requestAnimationFrame(tick);
         return;
       }
 
