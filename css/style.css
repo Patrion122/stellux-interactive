@@ -1030,6 +1030,7 @@ main {
 }
 
 .project-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background:
@@ -1042,16 +1043,49 @@ main {
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.06) inset,
     0 18px 40px rgba(0, 0, 0, 0.28);
-  transition: opacity 0.55s var(--ease), transform 0.35s var(--ease), border-color 0.35s, box-shadow 0.35s;
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.7s var(--ease),
+    border-color 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
   opacity: 0;
+  transform: translateY(18px);
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 28%,
+    rgba(255, 255, 255, 0.16) 46%,
+    rgba(168, 150, 255, 0.22) 52%,
+    transparent 72%
+  );
+  background-size: 220% 100%;
+  background-position: 130% 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .project-card.revealed {
   opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card.revealed::before {
+  animation: reveal-sheen 0.85s var(--ease);
 }
 
 .project-card.revealed:hover {
   transform: translateY(-4px);
+  transition:
+    transform 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
   border-color: rgba(255, 210, 120, 0.28);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.08) inset,
@@ -1334,10 +1368,32 @@ main {
   overflow: hidden;
   max-width: 100%;
   opacity: 0;
-  transition: opacity 0.55s var(--ease);
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.contact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 28%,
+    rgba(255, 255, 255, 0.14) 46%,
+    rgba(240, 180, 41, 0.16) 52%,
+    transparent 72%
+  );
+  background-size: 220% 100%;
+  background-position: 130% 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .contact-card .btn {
+  position: relative;
+  z-index: 1;
   max-width: 100%;
   overflow-wrap: anywhere;
   word-break: break-word;
@@ -1348,6 +1404,11 @@ main {
 
 .contact-card.revealed {
   opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-card.revealed::before {
+  animation: reveal-sheen 0.85s var(--ease);
 }
 
 .contact-glow {
@@ -1620,6 +1681,20 @@ main {
 @keyframes scroll-pulse {
   0%, 100% { transform: translateY(0); opacity: 0.55; }
   50% { transform: translateY(5px); opacity: 1; }
+}
+
+@keyframes reveal-sheen {
+  0% {
+    opacity: 0;
+    background-position: 130% 0;
+  }
+  28% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    background-position: -40% 0;
+  }
 }
 
 /* ── Mobile nav ── */
