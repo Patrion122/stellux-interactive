@@ -150,7 +150,8 @@
     let cooldownUntil = 0;
     let touchStartY = 0;
     const SNAP_SLACK = 16;
-    const COOLDOWN_MS = 450;
+    const fastSnap = window.matchMedia("(hover: none), (pointer: coarse), (max-width: 900px)").matches;
+    const COOLDOWN_MS = fastSnap ? 280 : 450;
 
     function aboutScrollTop() {
       const pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
@@ -167,6 +168,18 @@
       if (snapLock) return;
       snapLock = true;
       snapTarget = targetY;
+
+      // Mobile: jump immediately — CSS smooth scroll feels too slow on touch.
+      if (fastSnap) {
+        const root = document.documentElement;
+        const prevBehavior = root.style.scrollBehavior;
+        root.style.scrollBehavior = "auto";
+        window.scrollTo(0, targetY);
+        root.style.scrollBehavior = prevBehavior;
+        finishSnap(targetY);
+        return;
+      }
+
       window.scrollTo({ top: targetY, behavior: "smooth" });
 
       const started = performance.now();
@@ -239,7 +252,7 @@
       (event) => {
         if (event.touches.length !== 1) return;
         const deltaY = touchStartY - event.touches[0].clientY;
-        if (Math.abs(deltaY) < 10) return;
+        if (Math.abs(deltaY) < (fastSnap ? 6 : 10)) return;
         if (handleHeroAboutScroll(deltaY)) {
           event.preventDefault();
           touchStartY = event.touches[0].clientY;
