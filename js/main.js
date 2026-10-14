@@ -130,9 +130,20 @@
     }
   });
 
-  lastWidth = window.innerWidth;
-  resizeCanvas();
-  startLoop();
+  function bootStars() {
+    lastWidth = window.innerWidth;
+    resizeCanvas();
+    startLoop();
+  }
+
+  // Defer starfield until after first paint so it does not compete with LCP.
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(bootStars, { timeout: 900 });
+  } else {
+    window.addEventListener("load", () => {
+      requestAnimationFrame(() => requestAnimationFrame(bootStars));
+    });
+  }
 
   // ── Header + hero fade on scroll ──
   const header = document.querySelector(".site-header");
@@ -242,7 +253,7 @@
           }
         });
       },
-      { threshold: 0.08, rootMargin: "0px 0px 0px 0px" }
+      { threshold: 0.05, rootMargin: "100px 0px" }
     );
     revealEls.forEach((el) => observer.observe(el));
     // Fallback: reveal anything still hidden after 2.5 s (in-app browsers, etc.)
