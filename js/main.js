@@ -447,46 +447,6 @@
     if (event.key === "ArrowRight") step(1);
   });
 
-  // ── Mailto: copy email (mail apps often missing) ──
-  async function copyEmail(text) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return true;
-    } catch {
-      const field = document.createElement("textarea");
-      field.value = text;
-      field.setAttribute("readonly", "");
-      field.style.cssText = "position:fixed;left:-9999px;top:0";
-      document.body.appendChild(field);
-      field.select();
-      let ok = false;
-      try {
-        ok = document.execCommand("copy");
-      } catch (_) {
-        ok = false;
-      }
-      field.remove();
-      return ok;
-    }
-  }
-
-  document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
-    link.addEventListener("click", async (event) => {
-      const email = decodeURIComponent((link.getAttribute("href") || "").replace(/^mailto:/i, "").split("?")[0]);
-      if (!email) return;
-      event.preventDefault();
-      if (link.dataset.copyBusy === "1") return;
-      const copied = await copyEmail(email);
-      link.dataset.copyBusy = "1";
-      const original = link.innerHTML;
-      link.textContent = copied ? "Copied!" : "Couldn't copy";
-      window.setTimeout(() => {
-        link.innerHTML = original;
-        link.dataset.copyBusy = "0";
-      }, 1600);
-    });
-  });
-
   // ── Footer year ──
   document.getElementById("year").textContent = new Date().getFullYear();
 })();
