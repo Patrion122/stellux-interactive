@@ -336,6 +336,7 @@ main {
   background: radial-gradient(ellipse, rgba(124, 108, 240, 0.2) 0%, rgba(240, 180, 41, 0.08) 40%, transparent 70%);
   filter: blur(60px);
   pointer-events: none;
+  will-change: opacity;
 }
 
 .hero-layout-centered {
@@ -347,6 +348,7 @@ main {
   text-align: center;
   width: 100%;
   padding-bottom: 2.5rem;
+  will-change: opacity, transform;
 }
 
 .hero-content {
@@ -531,6 +533,24 @@ main {
 
 .btn-primary:hover {
   box-shadow: 0 8px 32px var(--accent-glow);
+}
+
+.btn-purple {
+  background: rgba(124, 108, 240, 0.12);
+  color: #d2ccff;
+  border: 1px solid rgba(124, 108, 240, 0.55);
+  box-shadow: none;
+}
+
+.btn-purple:hover {
+  background: rgba(124, 108, 240, 0.22);
+  border-color: rgba(168, 150, 255, 0.75);
+  color: #ebe8ff;
+  box-shadow: 0 6px 24px rgba(124, 108, 240, 0.22);
+}
+
+.hero-actions .btn {
+  min-width: 10.75rem;
 }
 
 .btn-ghost {

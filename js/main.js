@@ -134,154 +134,39 @@
   resizeCanvas();
   startLoop();
 
-  // ── Header scroll state ──
+  // ── Header + hero fade on scroll ──
   const header = document.querySelector(".site-header");
   const scrollHint = document.querySelector(".hero-scroll");
-  window.addEventListener("scroll", () => {
+  const hero = document.querySelector(".hero");
+  const heroFade = document.querySelector(".hero-layout-centered");
+  const heroGlow = document.querySelector(".hero-glow");
+  let heroFadeTicking = false;
+
+  function updateHeroFade() {
+    heroFadeTicking = false;
     header.classList.toggle("scrolled", window.scrollY > 20);
     if (scrollHint) scrollHint.classList.toggle("is-hidden", window.scrollY > 48);
-  }, { passive: true });
+    if (!hero || !heroFade || prefersReducedMotion) return;
 
-  // ── Hero ↔ About snap (no mid-scroll between them) ──
-  const aboutSection = document.getElementById("about");
-  if (aboutSection && !prefersReducedMotion) {
-    let snapLock = false;
-    let snapTarget = 0;
-    let cooldownUntil = 0;
-    let touchStartY = 0;
-    const SNAP_SLACK = 16;
-    const fastSnap = window.matchMedia("(hover: none), (pointer: coarse), (max-width: 900px)").matches;
-    const COOLDOWN_MS = fastSnap ? 220 : 450;
-    const MOBILE_SNAP_MS = 320;
-
-    function aboutScrollTop() {
-      const pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
-      return Math.max(0, Math.round(aboutSection.getBoundingClientRect().top + window.scrollY - pad));
-    }
-
-    function finishSnap(targetY) {
-      window.scrollTo(0, targetY);
-      snapLock = false;
-      cooldownUntil = performance.now() + COOLDOWN_MS;
-    }
-
-    function easeOutCubic(t) {
-      return 1 - Math.pow(1 - t, 3);
-    }
-
-    function snapTo(targetY) {
-      if (snapLock) return;
-      snapLock = true;
-      snapTarget = targetY;
-
-      // Mobile: short custom ease — CSS smooth is too slow, instant feels like a teleport.
-      if (fastSnap) {
-        const root = document.documentElement;
-        const prevBehavior = root.style.scrollBehavior;
-        root.style.scrollBehavior = "auto";
-        const startY = window.scrollY;
-        const distance = targetY - startY;
-        const started = performance.now();
-
-        function tick(now) {
-          if (!snapLock) {
-            root.style.scrollBehavior = prevBehavior;
-            return;
-          }
-          const t = Math.min(1, (now - started) / MOBILE_SNAP_MS);
-          window.scrollTo(0, Math.round(startY + distance * easeOutCubic(t)));
-          if (t < 1) {
-            requestAnimationFrame(tick);
-            return;
-          }
-          root.style.scrollBehavior = prevBehavior;
-          finishSnap(targetY);
-        }
-        requestAnimationFrame(tick);
-        return;
-      }
-
-      window.scrollTo({ top: targetY, behavior: "smooth" });
-
-      const started = performance.now();
-      function tick() {
-        if (!snapLock) return;
-        if (Math.abs(window.scrollY - targetY) <= SNAP_SLACK || performance.now() - started > 1100) {
-          finishSnap(targetY);
-          return;
-        }
-        requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    }
-
-    function handleHeroAboutScroll(deltaY) {
-      if (!deltaY) return false;
-      if (snapLock) return true;
-
-      const now = performance.now();
-      const aboutTop = aboutScrollTop();
-      const y = window.scrollY;
-      const inHeroGap = y < aboutTop - SNAP_SLACK;
-      const atAboutEdge = y <= aboutTop + SNAP_SLACK;
-
-      // Absorb trackpad inertia after a snap without reversing direction.
-      if (now < cooldownUntil) {
-        if (inHeroGap) return true;
-        if (atAboutEdge && deltaY < 0) return true;
-        return false;
-      }
-
-      if (inHeroGap) {
-        if (deltaY > 0) {
-          snapTo(aboutTop);
-          return true;
-        }
-        if (y > SNAP_SLACK) {
-          snapTo(0);
-          return true;
-        }
-        return false;
-      }
-
-      if (atAboutEdge && deltaY < 0) {
-        snapTo(0);
-        return true;
-      }
-
-      return false;
-    }
-
-    window.addEventListener(
-      "wheel",
-      (event) => {
-        if (handleHeroAboutScroll(event.deltaY)) event.preventDefault();
-      },
-      { passive: false }
-    );
-
-    window.addEventListener(
-      "touchstart",
-      (event) => {
-        if (event.touches.length === 1) touchStartY = event.touches[0].clientY;
-      },
-      { passive: true }
-    );
-
-    window.addEventListener(
-      "touchmove",
-      (event) => {
-        if (event.touches.length !== 1) return;
-        const deltaY = touchStartY - event.touches[0].clientY;
-        if (Math.abs(deltaY) < (fastSnap ? 6 : 10)) return;
-        if (handleHeroAboutScroll(deltaY)) {
-          event.preventDefault();
-          touchStartY = event.touches[0].clientY;
-        }
-      },
-      { passive: false }
-    );
+    const fadeRange = Math.max(1, hero.offsetHeight * 0.72);
+    const progress = Math.min(1, Math.max(0, window.scrollY / fadeRange));
+    const opacity = 1 - progress;
+    heroFade.style.opacity = String(opacity);
+    heroFade.style.transform = "translate3d(0, " + (-36 * progress).toFixed(2) + "px, 0)";
+    heroFade.style.pointerEvents = opacity < 0.15 ? "none" : "";
+    if (heroGlow) heroGlow.style.opacity = String(opacity);
   }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (heroFadeTicking) return;
+      heroFadeTicking = true;
+      requestAnimationFrame(updateHeroFade);
+    },
+    { passive: true }
+  );
+  updateHeroFade();
 
   // ── Mobile menu ──
   const toggle = document.querySelector(".menu-toggle");
