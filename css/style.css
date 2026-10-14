@@ -319,10 +319,10 @@ main {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: calc(var(--header-h) + 2rem) clamp(1.25rem, 4vw, 2.5rem) 2.5rem;
+  padding: var(--header-h) clamp(1.25rem, 4vw, 2.5rem) 2.5rem;
   position: relative;
 }
 
@@ -339,10 +339,14 @@ main {
 }
 
 .hero-layout-centered {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
+  width: 100%;
+  padding-bottom: 2.5rem;
 }
 
 .hero-content {
@@ -358,13 +362,6 @@ main {
 .hero-layout-centered .hero-lead {
   margin-left: auto;
   margin-right: auto;
-}
-
-.hero-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
 }
 
 .hero-actions {
@@ -713,6 +710,8 @@ main {
 .building-strip-featured {
   padding: 0;
   overflow: hidden;
+  opacity: 1;
+  transform: none;
 }
 
 .building-panel {
@@ -1670,9 +1669,12 @@ main {
   }
 
   .hero {
-    min-height: min(100svh, 44rem);
-    padding: calc(var(--header-h) + 1.75rem) 1.25rem 4.5rem;
-    justify-content: center;
+    min-height: 100svh;
+    padding: var(--header-h) 1.25rem 2.5rem;
+  }
+
+  .hero-layout-centered {
+    padding-bottom: 3rem;
   }
 
   .hero h1 {
@@ -1699,10 +1701,6 @@ main {
   .hero-actions .btn {
     padding: 0.6rem 1.15rem;
     font-size: 0.9rem;
-  }
-
-  .hero-products {
-    display: none;
   }
 
   .hero-scroll {

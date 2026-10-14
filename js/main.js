@@ -38,37 +38,6 @@
         { src: "assets/media/swiftkill/06-full.webp", alt: "SWIFTKILL prototype screenshot" },
       ],
     },
-    velocity: {
-      title: "Velocity — Advanced FPS Movement",
-      trailer: "zc6Zkf8_k6s",
-      trailerPoster: "assets/media/velocity/thumb-full.webp?v=20260817a",
-      images: [
-        { src: "assets/media/velocity/01-full.webp", alt: "Velocity wallrunning and sliding" },
-        { src: "assets/media/velocity/02-full.webp", alt: "Velocity FPS movement demo" },
-      ],
-    },
-    "ai-context-builder": {
-      title: "AI Context Builder",
-      trailer: "qbIV7_slErA",
-      trailerPoster: "assets/media/ai-context-builder/thumb-full.webp?v=20260817a",
-      images: [
-        { src: "assets/media/ai-context-builder/01-full.webp?v=3", alt: "AI Context Builder — fully customizable export" },
-        { src: "assets/media/ai-context-builder/02-full.webp?v=3", alt: "AI Context Builder — output control" },
-        { src: "assets/media/ai-context-builder/03-full.webp?v=3", alt: "AI Context Builder — manual context" },
-        { src: "assets/media/ai-context-builder/04-full.webp?v=3", alt: "AI Context Builder — quick presets" },
-      ],
-    },
-    "project-doctor": {
-      title: "Project Doctor Pro",
-      trailer: "iEkdLeqDcug",
-      trailerPoster: "assets/media/project-doctor/thumb-full.webp?v=20260817a",
-      images: [
-        { src: "assets/media/project-doctor/01-full.webp?v=3", alt: "Project Doctor Pro — batch rename" },
-        { src: "assets/media/project-doctor/02-full.webp?v=3", alt: "Project Doctor Pro — organize with one click" },
-        { src: "assets/media/project-doctor/03-full.webp?v=3", alt: "Project Doctor Pro — cleanup large and unused assets" },
-        { src: "assets/media/project-doctor/04-full.webp?v=3", alt: "Project Doctor Pro — fix broken references" },
-      ],
-    },
   };
 
   // ── Starfield ──
@@ -172,6 +141,113 @@
     header.classList.toggle("scrolled", window.scrollY > 20);
     if (scrollHint) scrollHint.classList.toggle("is-hidden", window.scrollY > 48);
   }, { passive: true });
+
+  // ── Hero ↔ About snap (no mid-scroll between them) ──
+  const aboutSection = document.getElementById("about");
+  if (aboutSection && !prefersReducedMotion) {
+    let snapLock = false;
+    let snapTarget = 0;
+    let cooldownUntil = 0;
+    let touchStartY = 0;
+    const SNAP_SLACK = 16;
+    const COOLDOWN_MS = 450;
+
+    function aboutScrollTop() {
+      const pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+      return Math.max(0, Math.round(aboutSection.getBoundingClientRect().top + window.scrollY - pad));
+    }
+
+    function finishSnap(targetY) {
+      window.scrollTo(0, targetY);
+      snapLock = false;
+      cooldownUntil = performance.now() + COOLDOWN_MS;
+    }
+
+    function snapTo(targetY) {
+      if (snapLock) return;
+      snapLock = true;
+      snapTarget = targetY;
+      window.scrollTo({ top: targetY, behavior: "smooth" });
+
+      const started = performance.now();
+      function tick() {
+        if (!snapLock) return;
+        if (Math.abs(window.scrollY - targetY) <= SNAP_SLACK || performance.now() - started > 1100) {
+          finishSnap(targetY);
+          return;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function handleHeroAboutScroll(deltaY) {
+      if (!deltaY) return false;
+      if (snapLock) return true;
+
+      const now = performance.now();
+      const aboutTop = aboutScrollTop();
+      const y = window.scrollY;
+      const inHeroGap = y < aboutTop - SNAP_SLACK;
+      const atAboutEdge = y <= aboutTop + SNAP_SLACK;
+
+      // Absorb trackpad inertia after a snap without reversing direction.
+      if (now < cooldownUntil) {
+        if (inHeroGap) return true;
+        if (atAboutEdge && deltaY < 0) return true;
+        return false;
+      }
+
+      if (inHeroGap) {
+        if (deltaY > 0) {
+          snapTo(aboutTop);
+          return true;
+        }
+        if (y > SNAP_SLACK) {
+          snapTo(0);
+          return true;
+        }
+        return false;
+      }
+
+      if (atAboutEdge && deltaY < 0) {
+        snapTo(0);
+        return true;
+      }
+
+      return false;
+    }
+
+    window.addEventListener(
+      "wheel",
+      (event) => {
+        if (handleHeroAboutScroll(event.deltaY)) event.preventDefault();
+      },
+      { passive: false }
+    );
+
+    window.addEventListener(
+      "touchstart",
+      (event) => {
+        if (event.touches.length === 1) touchStartY = event.touches[0].clientY;
+      },
+      { passive: true }
+    );
+
+    window.addEventListener(
+      "touchmove",
+      (event) => {
+        if (event.touches.length !== 1) return;
+        const deltaY = touchStartY - event.touches[0].clientY;
+        if (Math.abs(deltaY) < 10) return;
+        if (handleHeroAboutScroll(deltaY)) {
+          event.preventDefault();
+          touchStartY = event.touches[0].clientY;
+        }
+      },
+      { passive: false }
+    );
+  }
 
   // ── Mobile menu ──
   const toggle = document.querySelector(".menu-toggle");
@@ -450,6 +526,46 @@
   dialog.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") step(-1);
     if (event.key === "ArrowRight") step(1);
+  });
+
+  // ── Mailto: copy email (mail apps often missing) ──
+  async function copyEmail(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      const field = document.createElement("textarea");
+      field.value = text;
+      field.setAttribute("readonly", "");
+      field.style.cssText = "position:fixed;left:-9999px;top:0";
+      document.body.appendChild(field);
+      field.select();
+      let ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch (_) {
+        ok = false;
+      }
+      field.remove();
+      return ok;
+    }
+  }
+
+  document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+    link.addEventListener("click", async (event) => {
+      const email = decodeURIComponent((link.getAttribute("href") || "").replace(/^mailto:/i, "").split("?")[0]);
+      if (!email) return;
+      event.preventDefault();
+      if (link.dataset.copyBusy === "1") return;
+      const copied = await copyEmail(email);
+      link.dataset.copyBusy = "1";
+      const original = link.innerHTML;
+      link.textContent = copied ? "Copied!" : "Couldn't copy";
+      window.setTimeout(() => {
+        link.innerHTML = original;
+        link.dataset.copyBusy = "0";
+      }, 1600);
+    });
   });
 
   // ── Footer year ──
