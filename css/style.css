@@ -1709,14 +1709,10 @@ main {
   }
 
   .hero-lead {
-    max-width: 18.5rem;
+    max-width: 22rem;
     margin-bottom: 1.35rem;
     font-size: 0.98rem;
     line-height: 1.55;
-  }
-
-  .hero-lead-tail {
-    display: block;
   }
 
   .hero-actions {
